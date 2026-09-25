@@ -1,0 +1,1696 @@
+<!DOCTYPE html>
+
+<html lang="ar" dir="rtl" data-theme="light"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style>body {transition: opacity ease-in 0.2s; } 
+body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relative; } 
+</style>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>بيكسل | استوديو المستندات</title>
+<meta name="theme-color" content="#0b0809">
+
+
+
+
+<style>
+/* ============================================
+   KIRA STUDIO — CONTRACT BUILDER
+   Identity: crimson · obsidian · bone
+   Themes • Dark + Light • Print-perfect • RTL
+   Design system pulled from D:\Kira (PIXEL AGENCY)
+   ============================================ */
+
+/* ===== Brand core + ramps (KIRA, immutable) ===== */
+:root {
+  --kira-crimson: #af1221;
+  --kira-black:   #000000;
+  --kira-white:   #ffffff;
+  --kira-cobalt:  #0100bd;
+
+  /* crimson ramp */
+  --crimson-900: #410710;
+  --crimson-800: #66091a;
+  --crimson-700: #880d1d;
+  --crimson-600: #9c1020;
+  --crimson-500: #af1221;
+  --crimson-400: #c8202f;
+  --crimson-300: #e03c49;
+  --crimson-200: #ef6f78;
+  --crimson-100: #f8a9ad;
+
+  /* cobalt (rare accent) */
+  --cobalt-500: #0100bd;
+  --cobalt-400: #2a2ee2;
+  --cobalt-300: #5a5cf3;
+
+  /* noir — warm, faintly red-shifted darks */
+  --noir-1000:#000000; --noir-975:#070506; --noir-950:#0b0809; --noir-900:#110c0e;
+  --noir-850:#171012;  --noir-800:#1d1518; --noir-700:#281d20; --noir-600:#35262a;
+  --noir-500:#4b383d;  --noir-400:#6c5359;
+
+  /* bone — warm lights */
+  --bone-050:#faf6f3; --bone-100:#f1eae5; --bone-200:#e3dad3; --bone-300:#cabfb8;
+  --ash-400:#a3958f;  --ash-500:#7e706b; --ash-600:#5b4e4b;
+
+  --primary:    var(--crimson-500);
+
+  /* Type — Arabic editorial (Amiri) + Arabic UI/body (Tajawal) + Latin (Inter / EB Garamond) */
+  --font-display: "Amiri", "Tajawal", Georgia, serif;
+  --font-body:    "Tajawal", "Cairo", system-ui, sans-serif;
+  --font-ui:      "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --tracking-label: 0.22em;
+
+  /* KIRA leans square — sharp by default */
+  --r-sm: 4px;
+  --r-md: 8px;
+  --r-lg: 14px;
+  --r-xl: 18px;
+
+  /* logo tint hooks */
+  --wm-letter: var(--text);
+  --wm-apple:  var(--primary);
+}
+
+/* ===== Theme: DARK (default — KIRA signature) ===== */
+:root[data-theme="dark"] {
+  --bg-app:       radial-gradient(ellipse at 50% -10%, #1a0a0f 0%, #0b0809 62%);
+  --bg-card:      rgba(23, 16, 18, 0.86);
+  --bg-input:     rgba(7, 5, 6, 0.6);
+  --bg-input-fc:  rgba(175, 18, 33, 0.14);
+  --border:       rgba(250, 246, 243, 0.10);
+  --border-strong:rgba(250, 246, 243, 0.20);
+  --text:         #faf6f3;
+  --text-soft:    #cabfb8;
+  --text-dim:     #a3958f;
+  --accent:       var(--crimson-300);
+  --accent-2:     var(--crimson-400);
+  /* Document */
+  --doc-bg:       #110c0e;
+  --doc-text:     #faf6f3;
+  --doc-text-soft:#cabfb8;
+  --doc-card:     rgba(175, 18, 33, 0.07);
+  --doc-card-bd:  rgba(250, 246, 243, 0.14);
+  --doc-table-h:  #1d1518;
+  --doc-table-r:  rgba(175, 18, 33, 0.05);
+  --doc-watermark-op: 0.07;
+  --shadow-paper: 0 30px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(250, 246, 243, 0.06);
+}
+
+/* ===== Theme: LIGHT (museum-paper inversion) ===== */
+:root[data-theme="light"] {
+  --bg-app:       linear-gradient(135deg, #faf6f3 0%, #f1eae5 100%);
+  --bg-card:      #ffffff;
+  --bg-input:     #faf6f3;
+  --bg-input-fc:  #ffffff;
+  --border:       rgba(17, 12, 14, 0.12);
+  --border-strong:rgba(17, 12, 14, 0.26);
+  --text:         #110c0e;
+  --text-soft:    #281d20;
+  --text-dim:     #7e706b;
+  --accent:       var(--crimson-700);
+  --accent-2:     var(--crimson-600);
+  --doc-bg:       #ffffff;
+  --doc-text:     #110c0e;
+  --doc-text-soft:#5b4e4b;
+  --doc-card:     #faf6f3;
+  --doc-card-bd:  #e3dad3;
+  --doc-table-h:  var(--noir-850);
+  --doc-table-r:  #faf6f3;
+  --doc-watermark-op: 0.05;
+  --shadow-paper: 0 20px 60px rgba(17, 12, 14, 0.12), 0 4px 14px rgba(175, 18, 33, 0.06);
+}
+
+/* ===== Reset & Base ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body {
+  font-family: var(--font-body);
+  background: var(--bg-app);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: background 0.4s ease, color 0.4s ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Cinematic crimson haze + vignette (dark only) */
+:root[data-theme="dark"] body::before {
+  content: "";
+  position: fixed; inset: 0;
+  pointer-events: none; z-index: 0;
+  background:
+    radial-gradient(115% 70% at 50% -12%, rgba(175, 18, 33, 0.13), transparent 52%),
+    radial-gradient(140% 120% at 50% 50%, transparent 44%, rgba(0, 0, 0, 0.55) 100%);
+}
+
+::selection { background: rgba(175, 18, 33, 0.34); color: #faf6f3; }
+
+/* Keyboard focus ring (a11y) */
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: var(--r-sm); }
+:focus:not(:focus-visible) { outline: none; }
+
+/* ===== Brand marks (inlined KIRA SVG) ===== */
+.wm { display: block; width: 100%; height: 100%; }
+.wm .kw-l { fill: var(--wm-letter); }
+.wm .kw-a { fill: var(--wm-apple); }
+.ap { display: block; width: 100%; height: 100%; }
+.ap path { fill: currentColor; }
+
+/* ===== App header ===== */
+.app-header {
+  position: relative;
+  z-index: 10;
+  padding: 16px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+.brand { display: flex; align-items: center; gap: 14px; }
+.brand-word { width: 104px; height: 44px; display: block; flex-shrink: 0; }
+.brand-text {
+  font-weight: 800;
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.3;
+  border-right: 1px solid var(--border);
+  padding-right: 14px;
+}
+.brand-text small {
+  display: block;
+  font-weight: 500;
+  font-size: 11px;
+  color: var(--text-soft);
+  margin-top: 2px;
+  letter-spacing: 0.2px;
+}
+
+/* Theme switcher */
+.theme-switcher {
+  display: flex;
+  gap: 6px;
+  padding: 4px;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+}
+.theme-btn {
+  width: 34px; height: 34px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  background: transparent;
+  color: var(--text-soft);
+  transition: all 0.2s ease;
+}
+.theme-btn:hover { color: var(--text); transform: scale(1.05); }
+.theme-btn.active {
+  background: linear-gradient(135deg, var(--crimson-600), var(--crimson-400));
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(175, 18, 33, 0.45);
+}
+.theme-btn svg { width: 17px; height: 17px; }
+
+/* ===== Workspace layout ===== */
+.workspace {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(360px, 1fr) minmax(0, 1.4fr);
+  gap: 24px;
+  max-width: 1480px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+/* ===== Tab nav (mobile only) ===== */
+.tab-nav {
+  display: none;
+  position: sticky; top: 0; z-index: 20;
+  background: var(--bg-card);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 8px;
+  gap: 6px;
+}
+.tab-btn {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  background: transparent;
+  color: var(--text-soft);
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 13px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.tab-btn.active {
+  background: linear-gradient(135deg, var(--crimson-600), var(--crimson-400));
+  color: #fff;
+}
+
+/* ===== Form card ===== */
+.form-side {
+  position: sticky;
+  top: 20px;
+  align-self: start;
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 24px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+.form-side::-webkit-scrollbar { width: 6px; }
+.form-side::-webkit-scrollbar-thumb { background: var(--crimson-500); border-radius: 10px; }
+.form-side::-webkit-scrollbar-track { background: transparent; }
+
+.form-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.form-title::before {
+  content: "";
+  width: 5px;
+  height: 26px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, var(--crimson-400), var(--crimson-700));
+  box-shadow: 0 0 14px rgba(175, 18, 33, 0.6);
+}
+.form-subtitle {
+  font-size: 13px;
+  color: var(--text-soft);
+  margin-bottom: 22px;
+  line-height: 1.6;
+}
+
+fieldset { border: none; margin-bottom: 22px; padding: 0; }
+legend {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  padding-bottom: 10px;
+  margin-bottom: 14px;
+  border-bottom: 1px dashed var(--border);
+}
+legend .num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px; height: 24px;
+  border-radius: var(--r-sm);
+  background: linear-gradient(135deg, var(--crimson-600), var(--crimson-400));
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  box-shadow: 0 4px 10px rgba(175, 18, 33, 0.4);
+}
+
+.field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 14px; }
+.field-grid .full { grid-column: 1 / -1; }
+
+label.fld { display: flex; flex-direction: column; }
+label.fld .lbl {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-soft);
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+label.fld .lbl em { color: var(--accent); font-style: normal; font-weight: 800; }
+
+input, select, textarea {
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  background: var(--bg-input);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-sm);
+  padding: 10px 12px;
+  transition: all 0.2s ease;
+  width: 100%;
+  direction: rtl;
+}
+textarea { resize: vertical; min-height: 70px; font-family: inherit; }
+input::placeholder, textarea::placeholder { color: var(--text-dim); opacity: 0.7; }
+input:focus, select:focus, textarea:focus {
+  border-color: var(--crimson-400);
+  background: var(--bg-input-fc);
+  box-shadow: 0 0 0 4px rgba(175, 18, 33, 0.15);
+}
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path fill='%23af1221' d='M6 8L0 0h12z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: left 12px center;
+  padding-left: 36px;
+}
+
+/* Packages repeater (form side) */
+.packages-list { display: flex; flex-direction: column; gap: 14px; }
+.package-card {
+  background: var(--bg-input);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-md);
+  padding: 14px;
+  position: relative;
+  transition: border-color 0.2s ease;
+}
+.package-card:focus-within { border-color: var(--crimson-400); }
+.package-card .pkg-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.package-card .pkg-num {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-weight: 800; font-size: 12px; color: var(--accent); letter-spacing: 0.5px;
+}
+.package-card .pkg-num .dot {
+  width: 22px; height: 22px;
+  border-radius: var(--r-sm);
+  background: linear-gradient(135deg, var(--crimson-600), var(--crimson-400));
+  color: #fff;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 900;
+  box-shadow: 0 3px 8px rgba(175, 18, 33, 0.3);
+}
+.package-card .btn-x { width: 30px; height: 30px; font-size: 16px; }
+.package-card .pkg-body { display: flex; flex-direction: column; gap: 10px; }
+.package-card .pkg-name-row { display: grid; grid-template-columns: 1fr 130px; gap: 8px; align-items: end; }
+.package-card .pkg-preset {
+  display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+  font-size: 11px; color: var(--text-soft); margin-bottom: 2px;
+}
+.package-card .pkg-preset-btn {
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-soft);
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-family: inherit; font-size: 11px; font-weight: 700;
+  cursor: pointer; transition: all 0.15s ease;
+}
+.package-card .pkg-preset-btn:hover {
+  background: rgba(175, 18, 33, 0.1);
+  color: var(--accent);
+  border-color: var(--crimson-400);
+}
+
+.btn-x {
+  width: 36px; height: 36px;
+  border: none;
+  border-radius: var(--r-sm);
+  background: rgba(224, 60, 73, 0.14);
+  color: #e8616c;
+  cursor: pointer;
+  font-size: 18px; font-weight: 700;
+  transition: all 0.15s ease;
+}
+.btn-x:hover { background: rgba(224, 60, 73, 0.24); transform: scale(1.05); }
+.btn-x:disabled { opacity: 0.3; cursor: not-allowed; transform: none !important; }
+
+.btn-add {
+  margin-top: 8px;
+  padding: 10px 16px;
+  border: 1.5px dashed var(--crimson-400);
+  background: transparent;
+  color: var(--accent);
+  font-family: inherit; font-size: 13px; font-weight: 700;
+  border-radius: var(--r-sm);
+  cursor: pointer; align-self: flex-start;
+  transition: all 0.15s ease;
+}
+.btn-add:hover { background: rgba(175, 18, 33, 0.1); border-style: solid; }
+
+/* Packages display (document side) */
+.packages-display { display: flex; flex-direction: column; gap: 10px; margin-bottom: 12px; }
+.doc-package {
+  background: var(--doc-card);
+  border: 1px solid var(--doc-card-bd);
+  border-right: 4px solid var(--crimson-500);
+  border-radius: var(--r-sm);
+  padding: 12px 14px 14px;
+  page-break-inside: avoid; break-inside: avoid;
+  position: relative;
+}
+.doc-package .pk-head {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 10px;
+  margin-bottom: 8px; padding-bottom: 7px;
+  border-bottom: 1px dashed var(--doc-card-bd);
+}
+.doc-package .pk-title { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 800; color: var(--doc-text); }
+.doc-package .pk-title .pk-tag {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 22px; height: 22px; padding: 0 7px;
+  border-radius: 5px;
+  background: linear-gradient(135deg, var(--crimson-600), var(--crimson-400));
+  color: #fff; font-size: 10px; font-weight: 800; letter-spacing: 0.3px;
+}
+.doc-package .pk-price { font-size: 14px; font-weight: 900; color: var(--accent); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.doc-package .pk-details { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 4px; }
+.doc-package .pk-details li { position: relative; padding-right: 18px; font-size: 11.5px; line-height: 1.7; color: var(--doc-text); }
+.doc-package .pk-details li::before {
+  content: ""; position: absolute; right: 2px; top: 0.5em;
+  width: 6px; height: 6px;
+  background: var(--crimson-500);
+  transform: rotate(45deg);
+}
+.doc-package .pk-details-empty { font-size: 11.5px; color: var(--doc-text-soft); font-style: italic; opacity: 0.7; }
+
+/* Grand total bar */
+.grand-total {
+  margin-top: 4px;
+  padding: 12px 16px;
+  border-radius: var(--r-sm);
+  background: linear-gradient(135deg, rgba(175, 18, 33, 0.16), rgba(248, 169, 173, 0.07));
+  border: 1px solid var(--doc-card-bd);
+  display: flex; align-items: center; justify-content: space-between;
+  font-weight: 900;
+}
+.grand-total .gt-label { font-size: 13px; color: var(--doc-text); letter-spacing: 0.3px; }
+.grand-total .gt-value { font-size: 16px; color: var(--accent); font-variant-numeric: tabular-nums; }
+.amount-words { margin-top: 8px; font-size: 11.5px; color: var(--doc-text-soft); line-height: 1.7; }
+.amount-words strong { color: var(--doc-text); font-weight: 700; }
+
+/* KIRA stamp on signature block */
+.sig-block-stamped { position: relative; }
+.kira-stamp {
+  position: absolute;
+  top: 40%; left: 50%;
+  transform: translate(-50%, -50%) rotate(-12deg);
+  width: 112px; height: 112px;
+  opacity: 0.9;
+  color: var(--primary);
+  pointer-events: none;
+  z-index: 1;
+  filter: drop-shadow(0 2px 5px rgba(175, 18, 33, 0.25));
+}
+
+/* Action bar */
+.action-bar { display: grid; grid-template-columns: 1fr 2fr; gap: 10px; margin-top: 24px; }
+.btn {
+  padding: 14px 18px;
+  border: none;
+  border-radius: var(--r-md);
+  font-family: inherit; font-size: 14px; font-weight: 800;
+  cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  transition: all 0.2s ease;
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--crimson-600) 0%, var(--crimson-400) 100%);
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(175, 18, 33, 0.42), 0 0 0 1px rgba(175,18,33,0.4);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 34px rgba(175, 18, 33, 0.6); }
+.btn-secondary { background: var(--bg-input); color: var(--text-soft); border: 1.5px solid var(--border); }
+.btn-secondary:hover { background: var(--bg-input-fc); color: var(--text); border-color: var(--crimson-400); }
+
+.tip {
+  margin-top: 16px;
+  padding: 12px 14px;
+  border-radius: var(--r-sm);
+  background: linear-gradient(135deg, rgba(175, 18, 33, 0.1), rgba(248, 169, 173, 0.05));
+  border-right: 3px solid var(--crimson-400);
+  font-size: 12px; color: var(--text-soft); line-height: 1.7;
+}
+.tip strong { color: var(--text); }
+
+/* ===== Preview side ===== */
+.preview-side { min-width: 0; }
+.preview-label {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--font-ui);
+  font-size: 11px; font-weight: 700; letter-spacing: var(--tracking-label);
+  color: var(--text-soft); margin-bottom: 12px; padding-right: 4px;
+  text-transform: uppercase;
+}
+.preview-label::before {
+  content: ""; width: 8px; height: 8px;
+  background: var(--crimson-400);
+  transform: rotate(45deg);
+  box-shadow: 0 0 12px var(--crimson-400);
+  animation: live-dot 1.6s ease-in-out infinite;
+}
+@keyframes live-dot {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(175, 18, 33, 0.6); }
+  50%      { box-shadow: 0 0 0 8px rgba(175, 18, 33, 0); }
+}
+
+/* ============================================
+   The Document Paper
+   ============================================ */
+.doc-paper {
+  background: var(--doc-bg);
+  color: var(--doc-text);
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-paper);
+  font-family: var(--font-body);
+  font-size: 12px;
+  line-height: 1.75;
+  padding-bottom: 60px;
+}
+
+/* Watermark — KIRA apple signet */
+.doc-watermark {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 42%;
+  color: var(--primary);
+  transform: translate(-50%, -50%) rotate(-8deg);
+  opacity: var(--doc-watermark-op);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Header */
+.doc-header {
+  position: relative;
+  z-index: 2;
+  padding: 28px 36px 24px;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  background-image:
+    radial-gradient(circle at 82% 50%, rgba(175, 18, 33, 0.5), transparent 60%),
+    radial-gradient(circle at 8% 110%, rgba(175, 18, 33, 0.22), transparent 55%),
+    linear-gradient(135deg, #050304 0%, #110c0e 55%, #2a0a10 100%);
+  color: #fff;
+  overflow: hidden;
+}
+.doc-header::after {
+  content: "";
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--crimson-700), var(--crimson-300), var(--crimson-700));
+}
+.doc-header-logo {
+  width: 150px; height: 56px;
+  position: relative; z-index: 1; flex-shrink: 0;
+  --wm-letter: #faf6f3;
+  --wm-apple: var(--crimson-300);
+}
+.doc-header-meta { text-align: left; font-family: var(--font-ui); font-size: 11px; position: relative; z-index: 1; }
+.doc-header-meta .h-line { opacity: 0.7; letter-spacing: var(--tracking-label); margin-bottom: 4px; font-size: 9px; }
+.doc-header-meta .h-num { font-weight: 800; font-size: 14px; letter-spacing: 0.5px; color: var(--crimson-200); }
+
+/* Body */
+.doc-body { position: relative; z-index: 2; padding: 28px 36px 40px; }
+
+/* Title block */
+.doc-title-block { text-align: center; margin-bottom: 22px; padding-bottom: 16px; position: relative; }
+.doc-title-block::after {
+  content: ""; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+  width: 80px; height: 3px;
+  background: linear-gradient(90deg, transparent, var(--crimson-500), transparent);
+}
+.doc-title {
+  font-family: var(--font-display);
+  font-size: 30px; font-weight: 700;
+  color: var(--doc-text); letter-spacing: 0.3px; margin-bottom: 4px;
+}
+.doc-title em { font-style: normal; color: var(--accent); }
+.doc-subtitle {
+  font-family: var(--font-ui);
+  font-size: 10px; color: var(--doc-text-soft); font-weight: 600;
+  letter-spacing: var(--tracking-label); text-transform: uppercase;
+}
+
+/* Intro paragraph */
+.doc-intro {
+  background: var(--doc-card);
+  border: 1px solid var(--doc-card-bd);
+  border-right: 3px solid var(--crimson-500);
+  border-radius: var(--r-sm);
+  padding: 14px 18px;
+  margin-bottom: 22px;
+  font-size: 12.5px; line-height: 1.85;
+}
+.doc-intro strong {
+  color: var(--accent); font-weight: 800;
+  padding: 1px 6px;
+  background: rgba(175, 18, 33, 0.1);
+  border-radius: 3px;
+}
+
+/* Sections */
+.doc-section { margin-bottom: 20px; page-break-inside: avoid; break-inside: avoid; }
+.doc-section h3 {
+  font-family: var(--font-body);
+  font-size: 14px; font-weight: 800; color: var(--doc-text);
+  margin-bottom: 10px; display: flex; align-items: center; gap: 10px;
+}
+.doc-section h3 .badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 26px; height: 26px; padding: 0 6px;
+  border-radius: var(--r-sm);
+  background: linear-gradient(135deg, var(--crimson-600), var(--crimson-400));
+  color: #fff; font-size: 11px; font-weight: 800;
+  box-shadow: 0 4px 10px rgba(175, 18, 33, 0.35);
+}
+
+/* Parties */
+.parties-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.party-card {
+  background: var(--doc-card);
+  border: 1px solid var(--doc-card-bd);
+  border-radius: var(--r-sm);
+  padding: 16px 14px 12px;
+  position: relative;
+}
+.party-card .party-tag {
+  position: absolute; top: -10px; right: 14px;
+  background: linear-gradient(135deg, var(--crimson-600), var(--crimson-400));
+  color: #fff; font-size: 10px; font-weight: 800;
+  padding: 3px 10px; border-radius: 4px; letter-spacing: 0.5px;
+  box-shadow: 0 4px 8px rgba(175, 18, 33, 0.3);
+}
+.party-card dl { display: grid; grid-template-columns: max-content 1fr; gap: 4px 12px; font-size: 11.5px; }
+.party-card dt { color: var(--doc-text-soft); font-weight: 700; }
+.party-card dd { font-weight: 500; word-break: break-word; }
+
+/* Table */
+.doc-table { width: 100%; border-collapse: collapse; margin-top: 6px; border-radius: var(--r-sm); overflow: hidden; font-size: 12px; }
+.doc-table thead th { background: var(--doc-table-h); color: #fff; text-align: right; padding: 10px 14px; font-weight: 800; font-size: 11.5px; letter-spacing: 0.3px; }
+.doc-table thead th:last-child { text-align: left; }
+.doc-table tbody td { padding: 10px 14px; border-bottom: 1px solid var(--doc-card-bd); }
+.doc-table tbody tr:nth-child(even) td { background: var(--doc-table-r); }
+.doc-table tbody tr:last-child td { border-bottom: none; }
+.doc-table tbody td:last-child { text-align: left; font-weight: 800; color: var(--accent); font-variant-numeric: tabular-nums; }
+.doc-table tfoot td { padding: 12px 14px; background: linear-gradient(135deg, rgba(175, 18, 33, 0.18), rgba(248, 169, 173, 0.1)); font-weight: 900; font-size: 13px; color: var(--doc-text); }
+.doc-table tfoot td:last-child { text-align: left; color: var(--accent); font-size: 14px; }
+
+/* Payment box */
+.payment-box { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 10px; }
+.payment-box .pb { background: var(--doc-card); border: 1px solid var(--doc-card-bd); border-radius: var(--r-sm); padding: 10px 12px; }
+.payment-box .pb .k { font-family: var(--font-ui); font-size: 10px; color: var(--doc-text-soft); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+.payment-box .pb .v { font-weight: 800; color: var(--doc-text); font-size: 13px; }
+
+/* Terms */
+.terms-list { list-style: none; counter-reset: t; padding: 0; }
+.terms-list li {
+  counter-increment: t;
+  padding: 10px 0;
+  padding-right: 40px;
+  position: relative;
+  font-size: 12px; line-height: 1.8;
+  border-bottom: 1px dotted var(--doc-card-bd);
+}
+.terms-list li:last-child { border-bottom: none; }
+.terms-list li::before {
+  content: counter(t);
+  position: absolute; right: 0; top: 10px;
+  width: 26px; height: 26px;
+  background: linear-gradient(135deg, var(--crimson-600), var(--crimson-400));
+  color: #fff; font-size: 10px; font-weight: 800;
+  border-radius: var(--r-sm);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 3px 8px rgba(175, 18, 33, 0.3);
+}
+.term-title {
+  display: block;
+  font-weight: 800;
+  color: var(--accent);
+  font-size: 12.5px;
+  margin-bottom: 2px;
+  letter-spacing: 0.2px;
+}
+.term-body { color: var(--doc-text); }
+.term-var {
+  font-weight: 800;
+  color: var(--doc-text);
+  padding: 0 5px;
+  background: rgba(175, 18, 33, 0.1);
+  border-bottom: 1.5px solid var(--crimson-400);
+  border-radius: 2px;
+}
+
+/* Signatures */
+.signatures { margin-top: 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; page-break-inside: avoid; break-inside: avoid; }
+.sig-block { text-align: center; padding: 12px 8px; border-radius: var(--r-sm); background: var(--doc-card); border: 1px solid var(--doc-card-bd); }
+.sig-role { font-family: var(--font-ui); font-weight: 700; color: var(--accent); font-size: 11px; margin-bottom: 4px; letter-spacing: 0.5px; text-transform: uppercase; }
+.sig-name { font-size: 12px; color: var(--doc-text); font-weight: 600; margin-bottom: 30px; }
+.sig-line { border-bottom: 2px solid var(--doc-text-soft); margin: 0 14px 6px; height: 0; opacity: 0.4; }
+.sig-cap { font-size: 10px; color: var(--doc-text-soft); font-weight: 700; letter-spacing: 0.5px; }
+
+/* Footer */
+.doc-footer {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: linear-gradient(135deg, #110c0e, #2a0a10);
+  color: rgba(255, 255, 255, 0.85);
+  padding: 14px 36px;
+  font-size: 10.5px;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  z-index: 3;
+}
+.doc-footer::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--crimson-300), var(--crimson-700), var(--crimson-300));
+}
+.doc-footer .f-logo { width: 26px; height: 28px; flex-shrink: 0; color: var(--crimson-300); }
+.doc-footer .f-meta { text-align: center; flex: 1; font-weight: 600; }
+.doc-footer .f-meta strong { color: var(--crimson-200); font-weight: 800; margin-left: 4px; }
+.doc-footer .f-page { font-family: var(--font-ui); font-weight: 700; color: var(--crimson-200); flex-shrink: 0; }
+
+/* App footer note */
+.app-foot { position: relative; z-index: 1; text-align: center; padding: 20px; font-size: 12px; color: var(--text-dim); }
+.app-foot span { color: var(--accent); font-weight: 800; }
+
+/* Empty placeholder visual */
+.fill { color: var(--doc-text-soft); font-style: italic; opacity: 0.65; }
+
+/* Closing acknowledgement + fine print */
+.doc-closing p { font-size: 12px; color: var(--doc-text); background: var(--doc-card); border: 1px solid var(--doc-card-bd); border-right: 3px solid var(--crimson-500); border-radius: var(--r-sm); padding: 12px 16px; line-height: 1.9; }
+.doc-note { margin-top: 8px; font-size: 11px; color: var(--doc-text-soft); font-style: italic; line-height: 1.7; }
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 1024px) {
+  .workspace { grid-template-columns: 1fr; padding: 16px; gap: 16px; }
+  .form-side { position: static; max-height: none; }
+}
+@media (max-width: 720px) {
+  body { font-size: 14px; }
+  .app-header { padding: 14px 16px; flex-wrap: wrap; gap: 10px; }
+  .brand-text { font-size: 12px; }
+  .brand-word { width: 88px; height: 38px; }
+  .theme-btn { width: 30px; height: 30px; }
+  .tab-nav { display: flex; }
+  .workspace { padding: 12px; gap: 0; }
+  .form-side, .preview-side { display: none; }
+  .form-side.active, .preview-side.active { display: block; }
+  .form-side { padding: 16px; border-radius: var(--r-md); }
+  .field-grid { grid-template-columns: 1fr; }
+  .parties-grid { grid-template-columns: 1fr; }
+  .payment-box { grid-template-columns: 1fr; }
+  .signatures { grid-template-columns: 1fr; gap: 14px; }
+  .package-card .pkg-name-row { grid-template-columns: 1fr; }
+  .doc-header { padding: 22px 22px 18px; }
+  .doc-body { padding: 22px 22px 30px; }
+  .doc-footer { padding: 12px 22px; flex-wrap: wrap; }
+  .doc-header-logo { width: 120px; height: 46px; }
+  .doc-title { font-size: 24px; }
+  .action-bar { grid-template-columns: 1fr; }
+  .form-title { font-size: 20px; }
+}
+@media (max-width: 420px) {
+  .app-header { padding: 12px; }
+  .brand-text { display: none; }
+  .doc-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .doc-header-meta { text-align: right; }
+  .doc-footer { font-size: 9.5px; padding: 10px 16px; }
+  .doc-footer .f-meta { display: none; }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================
+   PRINT — always paper-light for legibility
+   ============================================ */
+</style>
+<link rel="icon" href="./logo-light.webp"><meta name="description" content="استوديو بيكسل لإعداد العقود وعروض الأسعار والفواتير"><link rel="stylesheet" href="./pixel.css"></head>
+<body class="choosing"><section id="welcome" aria-labelledby="welcome-title"><div class="welcome-top"><img src="./logo-dark.webp" alt="بيكسل" class="welcome-logo"><span>PIXEL AGENCY / DOCUMENT STUDIO</span></div><div class="welcome-content"><p class="eyebrow">من أول اتفاق إلى آخر دفعة</p><h1 id="welcome-title">إيش حاب تجهّز اليوم<span>؟</span></h1><p>اختر مستندك وخلّ التفاصيل علينا</p><div class="document-choices"><button data-kind="contract"><span class="choice-number">01 / AGREEMENT</span><span class="choice-icon">↗</span><strong>عقد خدمات</strong><span>نطاق العمل والالتزامات والدفعات<br>اتفاق واضح من البداية</span><b>إنشاء عقد ←</b></button><button data-kind="quote"><span class="choice-number">02 / QUOTATION</span><span class="choice-icon">↗</span><strong>عرض سعر</strong><span>خدماتك وأسعارك وشروط العرض<br>كل ما يحتاجه العميل ليقرر</span><b>إنشاء عرض سعر ←</b></button><button data-kind="invoice"><span class="choice-number">03 / INVOICE</span><span class="choice-icon">↗</span><strong>فاتورة</strong><span>تفاصيل الخدمات والمبالغ المستحقة<br>حسابات واضحة حتى آخر ريال</span><b>إنشاء فاتورة ←</b></button></div><div class="welcome-bottom"><span>بيكسل للتسويق والإبداع</span><span>ثلاثة مستندات. هوية واحدة.</span></div></div></section>
+
+<!-- App header -->
+<header class="app-header">
+  <div class="brand">
+    <span class="brand-word"><img class="pixel-logo" src="./logo-light.webp" alt="بيكسل Pixel Agency"></span>
+    <span class="brand-text">
+      بيكسل
+      <small>العقود · عروض الأسعار · الفواتير</small>
+    </span>
+  </div>
+
+  <button type="button" class="back-home" id="choose-type">تغيير نوع المستند</button><div class="theme-switcher" role="group" aria-label="اختيار الثيم">
+    <button class="theme-btn" data-theme-set="dark" title="الوضع الداكن">دارك</button>
+    <button class="theme-btn active" data-theme-set="light" title="الوضع الفاتح">أبيض</button><button class="theme-btn" data-theme-set="neon">فسفوري</button>
+  </div>
+</header>
+
+<!-- Mobile tab nav -->
+<nav class="tab-nav" id="tabNav">
+  <button class="tab-btn active" data-tab="form">تعبئة البيانات</button>
+  <button class="tab-btn" data-tab="preview">معاينة المستند</button>
+</nav>
+
+<div class="workspace">
+  <!-- ============ FORM SIDE ============ -->
+  <aside class="form-side active" id="formSide">
+    <h1 class="form-title" tabindex="-1">عقد خدمات</h1>
+    <p class="form-subtitle">عدّل التفاصيل وراجع صفحات المستند قبل الحفظ.</p>
+
+    <form id="contract-form" autocomplete="off">
+
+      <!-- 1. Contract meta -->
+      <fieldset>
+        <legend><span class="num">1</span> بيانات المستند</legend>
+        <div class="field-grid">
+          <label class="fld">
+            <span class="lbl">رقم المستند</span>
+            <input type="text" data-field="contractNumber" placeholder="PX-2026-001" value="PX-2026-001">
+          </label>
+          <label class="fld">
+            <span class="lbl">تاريخ التحرير <em>*</em></span>
+            <input type="date" data-field="contractDate">
+          </label>
+          <label class="fld full">
+            <span class="lbl">المدينة / مكان التحرير</span>
+            <input type="text" data-field="city" placeholder="مثال: الرياض" value="الرياض">
+          </label>
+        </div>
+      </fieldset>
+
+      <!-- 2. Party A -->
+      <fieldset>
+        <legend><span class="num">2</span> الطرف الأول (بيكسل)</legend>
+        <div class="field-grid">
+          <label class="fld full">
+            <span class="lbl">اسم الشركة</span>
+            <input type="text" data-field="partyAName" value="بيكسل للتسويق والإبداع">
+          </label>
+          <label class="fld">
+            <span class="lbl">الممثل القانوني</span>
+            <input type="text" data-field="partyARep" placeholder="الاسم الكامل">
+          </label>
+          <label class="fld">
+            <span class="lbl">الصفة</span>
+            <input type="text" data-field="partyARole" value="المدير العام">
+          </label>
+          <label class="fld full">
+            <span class="lbl">العنوان</span>
+            <input type="text" data-field="partyAAddress" placeholder="عنوان المقر الرئيسي">
+          </label>
+          <label class="fld">
+            <span class="lbl">رقم الهاتف</span>
+            <input type="tel" data-field="partyAPhone" placeholder="رقم التواصل">
+          </label>
+          <label class="fld">
+            <span class="lbl">البريد الإلكتروني المعتمد للمراسلات</span>
+            <input type="email" data-field="partyAEmail" value="" placeholder="البريد الإلكتروني للشركة">
+          </label>
+        </div>
+      </fieldset>
+
+      <!-- 3. Party B -->
+      <fieldset>
+        <legend><span class="num">3</span> الطرف الثاني (العميل)</legend>
+        <div class="field-grid">
+          <label class="fld full">
+            <span class="lbl">اسم العميل / الشركة <em>*</em></span>
+            <input type="text" data-field="partyBName" placeholder="الاسم بالكامل">
+          </label>
+          <label class="fld">
+            <span class="lbl">الممثل / الصفة</span>
+            <input type="text" data-field="partyBRep" placeholder="مثال: صاحب المؤسسة">
+          </label>
+          <label class="fld">
+            <span class="lbl">رقم الهوية / السجل</span>
+            <input type="text" data-field="partyBID" placeholder="الرقم القومي / السجل">
+          </label>
+          <label class="fld full">
+            <span class="lbl">العنوان</span>
+            <input type="text" data-field="partyBAddress" placeholder="عنوان المراسلة">
+          </label>
+          <label class="fld">
+            <span class="lbl">رقم الهاتف <em>*</em></span>
+            <input type="tel" data-field="partyBPhone" placeholder="رقم التواصل">
+          </label>
+          <label class="fld">
+            <span class="lbl">البريد الإلكتروني المعتمد للمراسلات</span>
+            <input type="email" data-field="partyBEmail" placeholder="email@example.com">
+          </label>
+        </div>
+      </fieldset>
+
+      <!-- 4. Packages -->
+      <fieldset>
+        <legend><span class="num">4</span> الباقات المتفق عليها</legend>
+        <label class="fld" style="margin-bottom: 12px;">
+          <span class="lbl">عنوان المشروع / الوصف العام</span>
+          <textarea data-field="projectTitle" rows="2" placeholder="مثال: حملة تسويقية متكاملة لإطلاق منتج جديد"></textarea>
+        </label>
+        <div class="packages-list" id="packages-list"><div class="package-card">
+      <div class="pkg-head">
+        <div class="pkg-num"><span class="dot">1</span> الباقة رقم 1</div>
+        <button type="button" class="btn-x" data-pkg-remove="0" title="حذف الباقة" disabled="">×</button>
+      </div>
+      <div class="pkg-preset">
+        <span style="font-weight:700;">اختر من الباقات الجاهزة:</span>
+        <button type="button" class="pkg-preset-btn" data-pkg-preset="0" data-pkg-idx="0">باقة السوشيال ميديا</button><button type="button" class="pkg-preset-btn" data-pkg-preset="1" data-pkg-idx="0">باقة الإعلانات الممولة</button><button type="button" class="pkg-preset-btn" data-pkg-preset="2" data-pkg-idx="0">باقة الـ SEO</button><button type="button" class="pkg-preset-btn" data-pkg-preset="3" data-pkg-idx="0">باقة الهوية البصرية</button><button type="button" class="pkg-preset-btn" data-pkg-preset="4" data-pkg-idx="0">باقة إنتاج المحتوى</button><button type="button" class="pkg-preset-btn" data-pkg-preset="5" data-pkg-idx="0">باقة المتجر الإلكتروني</button><button type="button" class="pkg-preset-btn" data-pkg-preset="6" data-pkg-idx="0">باقة التسويق المتكامل</button>
+      </div>
+      <div class="pkg-body">
+        <div class="pkg-name-row">
+          <label class="fld">
+            <span class="lbl">اسم الباقة</span>
+            <input type="text" placeholder="مثال: باقة السوشيال ميديا" value="" data-pkg-idx="0" data-pkg-key="name">
+          </label>
+          <label class="fld">
+            <span class="lbl">السعر</span>
+            <input type="number" placeholder="0" value="" data-pkg-idx="0" data-pkg-key="price" min="0" step="any">
+          </label>
+        </div>
+        <label class="fld">
+          <span class="lbl">بنود وتفاصيل الباقة (كل بند في سطر)</span>
+          <textarea rows="5" placeholder="مثال:
+إدارة 3 منصات سوشيال ميديا
+إنتاج 20 منشور شهرياً
+تقرير شهري مفصل" data-pkg-idx="0" data-pkg-key="details"></textarea>
+        </label>
+      </div>
+    </div></div>
+        <button type="button" class="btn-add" id="btn-add-package">+ إضافة باقة جديدة</button>
+      </fieldset>
+
+      <!-- 5. Financial -->
+      <fieldset>
+        <legend><span class="num">5</span> القيمة المالية والدفع</legend>
+        <div class="field-grid">
+          <label class="fld">
+            <span class="lbl">العملة</span>
+            <select data-field="currency">
+              <option value="جنيه مصري">جنيه مصري</option>
+              <option value="ريال سعودي">ريال سعودي</option>
+              <option value="درهم إماراتي">درهم إماراتي</option>
+              <option value="دولار أمريكي">دولار أمريكي</option>
+              <option value="يورو">يورو</option>
+            </select>
+          </label>
+          <label class="fld">
+            <span class="lbl">طريقة الدفع</span>
+            <select data-field="paymentMethod">
+              <option>تحويل بنكي</option>
+              <option>Stripe (بطاقة ائتمان)</option>
+              <option>كاش</option>
+              <option>دفعات شهرية</option>
+              <option>50% مقدم + 50% عند التسليم</option>
+              <option>30% مقدم + 40% منتصف + 30% تسليم</option>
+            </select>
+          </label>
+          <label class="fld full">
+            <span class="lbl">ملاحظات الدفع</span>
+            <input type="text" data-field="paymentNotes" placeholder="مثال: يُسدد المقدم خلال 3 أيام من التوقيع">
+          </label>
+        </div>
+      </fieldset>
+
+      <!-- 6. Duration -->
+      <fieldset data-contract-only="">
+        <legend><span class="num">6</span> المدة الزمنية</legend>
+        <div class="field-grid">
+          <label class="fld">
+            <span class="lbl">تاريخ البدء</span>
+            <input type="date" data-field="startDate">
+          </label>
+          <label class="fld">
+            <span class="lbl">تاريخ الانتهاء</span>
+            <input type="date" data-field="endDate">
+          </label>
+          <label class="fld full">
+            <span class="lbl">تفاصيل إضافية للمدة</span>
+            <input type="text" data-field="durationNotes" placeholder="مثال: قابلة للتجديد بموافقة الطرفين">
+          </label>
+        </div>
+      </fieldset>
+
+      <!-- 7. Clause variables -->
+      <fieldset data-contract-only="">
+        <legend><span class="num">7</span> متغيرات بنود الاتفاقية</legend>
+        <div class="field-grid">
+          <label class="fld">
+            <span class="lbl">عدد التعديلات المجانية</span>
+            <input type="text" data-field="revisionsCount" value="تعديلين اثنين">
+          </label>
+          <label class="fld">
+            <span class="lbl">مهلة السداد قبل إيقاف العمل</span>
+            <input type="text" data-field="paymentGraceDays" value="7 أيام عمل">
+          </label>
+          <label class="fld">
+            <span class="lbl">مدة الإخطار بالإنهاء</span>
+            <input type="text" data-field="terminationNotice" value="30 يوماً">
+          </label>
+          <label class="fld">
+            <span class="lbl">مهلة الحل الودي للنزاع</span>
+            <input type="text" data-field="amicableDays" value="15 يوماً">
+          </label>
+          <label class="fld">
+            <span class="lbl">مدة سريان السرية بعد الانتهاء</span>
+            <input type="text" data-field="confidentialityDuration" value="سنتين">
+          </label>
+          <label class="fld">
+            <span class="lbl">القانون الحاكم / الدولة</span>
+            <input type="text" data-field="jurisdiction" value="المملكة العربية السعودية">
+          </label>
+          <label class="fld">
+            <span class="lbl">المحكمة المختصة</span>
+            <input type="text" data-field="courts" value="المحكمة المختصة حسب الاتفاق">
+          </label>
+        </div>
+      </fieldset>
+
+      <!-- 8. Custom terms -->
+      <fieldset>
+        <legend><span class="num">8</span> شروط مخصصة (اختياري)</legend>
+        <label class="fld">
+          <span class="lbl">أي بنود إضافية خاصة بالعميل (كل بند في سطر)</span>
+          <textarea data-field="customTerms" rows="3" placeholder="بند إضافي 1
+بند إضافي 2"></textarea>
+        </label>
+      </fieldset>
+
+      <fieldset><legend>الحسابات وبيانات السداد</legend><div class="field-grid"><label class="fld"><span class="lbl">الخصم (مبلغ)</span><input type="number" data-field="discount" value="0" min="0" step="0.01"></label><label class="fld"><span class="lbl">نسبة الضريبة %</span><input type="number" data-field="taxRate" value="0" min="0" step="0.01"></label><label class="fld" hidden=""><span class="lbl">المبلغ المدفوع</span><input type="number" data-field="paid" value="0" min="0" step="0.01"></label><label class="fld" hidden=""><span class="lbl">تاريخ استحقاق الفاتورة</span><input type="date" data-field="dueDate" value=""></label><label class="fld"><span class="lbl">الرقم الضريبي لبيكسل</span><input type="text" data-field="companyTax" value=""></label><label class="fld"><span class="lbl">الرقم الضريبي للعميل</span><input type="text" data-field="clientTax" value=""></label><label class="fld"><span class="lbl">اسم البنك</span><input type="text" data-field="bank" value=""></label><label class="fld"><span class="lbl">رقم الحساب / IBAN</span><input type="text" data-field="iban" value=""></label></div><p class="tip">أدخل الضريبة المطبقة على معاملتك. لا تُضاف ضريبة تلقائياً.</p></fieldset><div class="action-bar">
+        <button type="button" class="btn btn-secondary" id="btn-reset">مسح</button>
+        <button type="button" class="btn btn-primary" id="btn-print">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+          حفظ PDF / طباعة
+        </button>
+      </div>
+
+      <div class="tip">
+        <strong>💡 نصيحة:</strong> عند الضغط على «حفظ PDF / طباعة»، اختر <strong>«حفظ كـ PDF»</strong> للنسخة الإلكترونية. تأكد من تفعيل خيار <strong>«الرسوم والخلفيات»</strong> (Background graphics) من إعدادات الطباعة لإظهار ترويسة الهوية.
+      </div>
+    </form>
+  </aside>
+
+  <!-- ============ PREVIEW SIDE ============ -->
+  <main class="preview-side" id="previewSide">
+    <div class="preview-label"><span>معاينة المستند · A4</span><span id="page-count">2 صفحات</span></div><div id="page-viewport" style="height: 2268px;"><div id="pages" style="transform: scale(1);"><article class="px-page px-contract"><header class="px-head"><img src="./logo-light.webp" alt="بيكسل"><div><small>SERVICES AGREEMENT</small><b dir="ltr">PX-CTR-2026-001</b></div></header><div class="px-content"><div class="px-block "><h1 class="px-title">عقد خدمات</h1><div class="px-en">SERVICES AGREEMENT</div><div class="px-meta"><span>تاريخ الإصدار: <b>٢٤ سبتمبر ٢٠٢٦</b></span><span>المدينة: <b>الرياض</b></span></div></div><div class="px-block "><div class="px-grid"><div class="px-party"><h3>الطرف الأول · مقدم الخدمة</h3><b>بيكسل للتسويق والإبداع</b></div><div class="px-party"><h3>الطرف الثاني · العميل</h3><b>—</b></div></div></div><div class="px-block ">اتفق الطرفان على تقديم الخدمات التسويقية والإبداعية الموضحة أدناه، وفق نطاق العمل والمقابل المالي والمدة والشروط الواردة في هذا العقد.</div><div class="px-block "><div class="px-table-head"><b>الخدمة / نطاق العمل</b><b>القيمة · ريال سعودي</b></div></div><div class="px-block "><div class="px-item"><div class="px-item-head"><b>1. اسم الخدمة</b><b dir="ltr">0.00</b></div></div></div><div class="px-block "><div class="px-totals"><div class="px-total-row "><span>الإجمالي قبل الخصم</span><b dir="ltr">0.00 ريال سعودي</b></div><div class="px-total-row "><span>الضريبة (0%)</span><b dir="ltr">0.00 ريال سعودي</b></div><div class="px-total-row final"><span>الإجمالي شامل الضريبة</span><b dir="ltr">0.00 ريال سعودي</b></div></div></div><div class="px-block "><h2 class="px-section-title">بيانات السداد</h2><div>طريقة الدفع: تحويل بنكي</div></div><div class="px-block "><h2 class="px-section-title">مدة التنفيذ</h2><p>من — إلى —. يبدأ التنفيذ بعد اعتماد نطاق العمل واستلام الدفعة المتفق عليها والمواد والصلاحيات اللازمة.</p></div><div class="px-block "><h2 class="px-section-title">الشروط والأحكام</h2></div><div class="px-block px-term"><strong>1. نطاق الخدمات والميزانية الإعلانية</strong><p>تقتصر الخدمات على البنود والكميات المحددة في هذا العقد. ميزانيات شراء الإعلانات ورسوم المنصات والأدوات والتراخيص الخارجية غير مشمولة في أتعاب بيكسل إلا إذا ذُكرت صراحة ضمن البنود المالية.</p></div></div><footer class="px-foot"><span>PIXEL AGENCY · بيكسل للتسويق والإبداع</span><span class="px-pagination">1 / 2</span></footer></article><article class="px-page px-contract"><header class="px-head"><img src="./logo-light.webp" alt="بيكسل"><div><small>SERVICES AGREEMENT</small><b dir="ltr">PX-CTR-2026-001</b></div></header><div class="px-content"><div class="px-block px-term"><strong>2. الاعتمادات والتعاون</strong><p>يوفر العميل المواد والمعلومات الصحيحة والصلاحيات اللازمة، ويعتمد الأعمال كتابةً من ممثله المخول. يترتب على التأخر في توفير المتطلبات أو الاعتماد تعديل الجدول الزمني بما يتناسب مع مدة التأخير.</p></div><div class="px-block px-term"><strong>3. التعديلات وتغيير النطاق</strong><p>يشمل نطاق العمل تعديلين اثنين لكل مخرج. تتطلب الطلبات الإضافية أو تغيير الاتجاه بعد الاعتماد عرضاً مستقلاً وموافقة كتابية على التكلفة والمدة قبل التنفيذ.</p></div><div class="px-block px-term"><strong>4. الدفعات والتوقف</strong><p>تُسدد المستحقات حسب آلية الدفع المتفق عليها. عند التأخر لمدة 7 أيام عمل بعد الاستحقاق، يجوز تعليق الخدمات بعد إشعار العميل حتى السداد، مع تحديث مواعيد التسليم.</p></div><div class="px-block px-term"><strong>5. الأداء والتقارير</strong><p>تلتزم بيكسل بالتنفيذ والتحسين المهني وتقديم التقارير ضمن النطاق المتفق عليه. لا يشكل العقد ضماناً لعدد مبيعات أو عائد إعلاني محدد؛ إذ تتأثر النتائج بالمنتج والعرض والموقع والسوق وسياسات المنصات.</p></div><div class="px-block px-term"><strong>6. الملكية والسرية</strong><p>تنتقل حقوق استخدام المخرجات النهائية المتفق عليها بعد سداد المستحقات، ولا تشمل الملفات المصدرية أو تراخيص الأطراف الأخرى إلا بنص صريح. يحافظ الطرفان على سرية المعلومات لمدة سنتين بعد انتهاء التعاون، ولا تُنشر معلومات العميل السرية دون موافقته.</p></div><div class="px-block px-term"><strong>7. إنهاء التعاون</strong><p>يجوز إنهاء العقد بإشعار كتابي قبل 30 يوماً. تُسوّى قيمة الأعمال المنجزة والمصروفات المعتمدة، ويُرد الرصيد المقابل للأعمال غير المنفذة بعد التسوية.</p></div><div class="px-block px-term"><strong>8. الظروف الخارجة عن السيطرة</strong><p>يُخطر الطرف المتأثر الطرف الآخر عند تعطل المنصات أو حدوث ظرف خارج عن السيطرة، ويتعاون الطرفان لتعديل التنفيذ والجدول الزمني بما يتناسب مع أثره.</p></div><div class="px-block px-term"><strong>9. تسوية الخلافات</strong><p>يسعى الطرفان لحل الخلاف ودياً خلال 15 يوماً. ويكون القانون الحاكم: المملكة العربية السعودية، والجهة المختصة: المحكمة المختصة حسب الاتفاق وفق ما يعتمده الطرفان.</p></div><div class="px-block "><div class="px-signatures"><div class="px-provider-sign"><span><b>بيكسل للتسويق والإبداع</b><br>الاسم والتوقيع: ______________<br>التاريخ: ______________</span><span class="pixel-seal" role="img" aria-label="ختم بيكسل للتسويق والإبداع"><span class="seal-ar">بيكسل</span><img src="./logo-white.webp" alt=""><span class="seal-en" dir="ltr">PIXEL AGENCY</span><span class="seal-sub">للتسويق والإبداع</span></span></div><div><b>—</b><br>الاسم والتوقيع: __________________<br>التاريخ: __________________</div></div></div></div><footer class="px-foot"><span>PIXEL AGENCY · بيكسل للتسويق والإبداع</span><span class="px-pagination">2 / 2</span></footer></article></div></div>
+
+    <div class="doc-paper" id="doc-paper">
+      <!-- Watermark behind everything -->
+      <div class="doc-watermark"><svg class="ap" aria-hidden="true" focusable="false" viewBox="0 0 148.35 158.64"><g>
+    <g>
+      <path d="M146.59,72.04l-3.4-7.92,1.81-.67c-1.6.36-3.06-.77-2.05-2.29.29-.43,1.29-.17,1.14-.88-2.82.4-4-3.36-1.81-4.98-.51-.43-1.61,1.51-2.9.49l-.27-1.86-2.21-.06-.53-1.76c-1.76,1-2.34-.48-3.47-.75-3.19-.75-11.07-2.87-13.97-2.87h-27.41c1.48-8.3,2.65-17.61,1.3-26-.51-3.19-1.75-9.26-6.12-8.08-4.73,1.28-.99,5.02-.04,7.89,2.56,7.78,1.73,16.77,1.23,24.82-.72.77-10.64-5.4-12.12-6.2-3.59-1.95-6.94-4-11.09-5.24-6-1.8-11.18-1.86-17.36-1.63l-.43.84c-1.43-1.79-.98-.09-1.94.45-.57.32-1.81.41-2.68.83-7.54,3.65-13.32,9.22-17.45,16.54-1.01,1.79-4.04,9.78-5.21,10.2-.47.16-1.01.09-1.5.08.02-.22.01-.42.02-.63-.14.09-.28.18-.43.26.14.3.28.58.41.83-6.32,1.64-14.04,3.09-18.12,8.61,2.93-.45,5.61-3.06,8.61-2.49l-2.26,2.49c3.83-.79,6.74-3.03,10.88-2.26l-.35.83c1.65.1.17.45.09,1.18-.94,8.93-2.08,17.58-1.05,26.7.48,4.26,1.56,8.55,2.66,12.69-1.35,1.93-1.91.49-3.33.71-.35.05-.11,1.01-.95.98-1.31-.05-2.86-1.74-4.32-1.18,2.97,2.72,7.58,2.48,10.42,4.99-.67.5-1.98.24-2.73.01-1.09-.32-4.28-3.37-4.06-1.16l7.73,3.94c.77,4.76,5.47,10.48,6.56,14.65.16.6-.31,1.31-.26,1.35.14.1.91-.26,1.4.29,1.15,1.28,3.13,5.79,4.18,6.83.68.68,3.71,1.61,4.39,3.08l-1.81,1.13c3.74-1.03,5.97,1.81,9.52,2.26l-.33-.81.8-.35-.93-2.46c.73-.33,4.05,1.5,4.39,1.95.56.72.58,3,1.8,3.41l4.68.07c-.35-.51-1.74-2.12-.22-1.82,1.29.26,2.97,1.92,4.17,2.18,3.38.74,7.28.49,11.11,1.58,4.78,1.37,9.06,4.15,13.96,5.37.48.06.96.11,1.44.17.76.02,1.58,0,2.29.11,1.41-.03,2.83,0,4.25.04.08,0,.15,0,.23,0,1.2.04,2.39.08,3.57.11.75-.09,1.5-.22,2.24-.39.01-.17.03-.35.07-.52h1.84c1.01-.29,2-.63,2.98-1.02,1.07-1.03,3.27-1.62,4.51-2.15,1.78-.98,3.51-2.07,5.16-3.25.73-.84,1.69-1.36,2.72-2.03,3.07-2.4,6.08-5.01,8.86-7.83.19-.47.59-.95,1.3-1.44,0,.03,0,.06,0,.08.35-.37.68-.74,1.02-1.12,1.26-2.29,5.92-7.27,6.91-8.93l-.03.22c2.54-3.51,4.95-7.3,6.48-11.03l-.11-.29.28-.14c.12-.3.24-.6.34-.9.01-.04.03-.08.05-.11l-.64-1.59c-.45-.34-1.73,1.07-1.38-.64l2.67-.06c1.94-6.22,4.85-13.21,5.46-19.73.09-.96-.45-1.65-.44-2.16,0-.27.83-.21.92-.56.23-.95-.44-2.37.45-3.11.52-6.21-.1-12.16-1.58-17.9Z"></path>
+      <path d="M74.61,6.05c4.03,4.09,5.95,11.34,7.45,16.77-8.26,5.28-17.61,5.07-26.33.98-3.92-1.84-8.22-5.75-12.31-6.73-1.41-.33-9.1-.88-9.44-1.22.04-1.65.51-3.08,2.27-2.27-2.13-2.81.29-2.04,1.28-2.41.1-.04.46-1.15,1.78-.67l5.78,5.35c.37.07-.09-1.76,1.12-1.37.07-.72-.95-.55-1.5-.89s.2-1.32-1.66-.46c-.07-3.47-3.21-3-5.89-3.18l2.02-3.06c2.65,1.67,3.48.56,6.14.35v1.36s-.91.22-.91.22l1.14.24.96-1.77,1.98-.05-.23,1.79c1.25-.1,2.84-1.57,3.74-1.74,1.51-.28,2.12,1.01,3.74-.53l-.22-.9-6.12-.45.28-1.39,1.98-1.32c-.39-.09-4.75-.85-3.63-1.82,1.63-.03,5.03-1.1,6.36-.22.69.46-.1,1.78,2.25.67l-1.36-1.35c6.71.31,14.33.98,19.32,6.05Z"></path>
+      <path d="M117.03,26.15c.56.36,1.78.15,2.34.53.44.31.13,1.2.3,1.34.27.24,1.35-.07,1.94.13.66.21.6,1.24,1.04,1.33.86.17,1.79-.75,2.85-.28.73.32,1.91,2.19,2.73,2.74,0,.85-8.03,4.06-9.4,4.63-.55.23-.48.9-.89,1.02-.79.22-4.04.79-4.93.88-5.65.53-11.37-.16-16.95-.86,1.55-5.65,6.38-15.97,12.87-16.69,1.11-.13,5.03.39,5.87.9.99.6,1.14,3.65,2.23,4.34Z"></path>
+      <path d="M138.77,47.46c-1.57-1.63-.01-4.16,2.16-2.83s-.55,4.5-2.16,2.83Z"></path>
+    </g>
+  </g></svg></div>
+
+      <!-- Header -->
+      <header class="doc-header">
+        <div class="doc-header-logo"><img class="pixel-logo" src="./logo-light.webp" alt="بيكسل Pixel Agency"></div>
+        <div class="doc-header-meta">
+          <div class="h-line">CONTRACT NO.</div>
+          <div class="h-num" data-out="contractNumber" data-fallback="PX-2026-001">PX-CTR-2026-001</div>
+        </div>
+      </header>
+
+      <!-- Body -->
+      <div class="doc-body">
+        <div class="doc-title-block">
+          <h2 class="doc-title">عقد <em>خدمات تسويقية وإبداعية</em></h2>
+          <div class="doc-subtitle">Creative &amp; Marketing Services Agreement</div>
+        </div>
+
+        <div class="doc-intro">
+          إنه بتاريخ <strong data-out="contractDate" data-format="date" data-fallback="_______" class="">٢٤ سبتمبر ٢٠٢٦</strong>، بمدينة <strong data-out="city" data-fallback="الرياض">الرياض</strong>، تم الاتفاق وبكامل الأهلية المعتبرة شرعاً وقانوناً بين كلٍّ من الطرفين الموضحين أدناه، على ما يلي:
+        </div>
+
+        <section class="doc-section">
+          <h3><span class="badge">١</span> أطراف العقد</h3>
+          <div class="parties-grid">
+            <div class="party-card">
+              <span class="party-tag">الطرف الأول</span>
+              <dl>
+                <dt>الاسم:</dt><dd data-out="partyAName" data-fallback="بيكسل للتسويق والإبداع">بيكسل للتسويق والإبداع</dd>
+                <dt>الممثل:</dt><dd data-out="partyARep" class="fill" data-fallback="_______">_______</dd>
+                <dt>الصفة:</dt><dd data-out="partyARole" data-fallback="المدير العام">المدير العام</dd>
+                <dt>العنوان:</dt><dd data-out="partyAAddress" class="fill" data-fallback="_______">_______</dd>
+                <dt>الهاتف:</dt><dd data-out="partyAPhone" class="fill" data-fallback="_______">_______</dd>
+                <dt>البريد المعتمد:</dt><dd data-out="partyAEmail" data-fallback="_______" class="fill">_______</dd>
+              </dl>
+            </div>
+            <div class="party-card">
+              <span class="party-tag">الطرف الثاني</span>
+              <dl>
+                <dt>الاسم:</dt><dd data-out="partyBName" class="fill" data-fallback="_______">_______</dd>
+                <dt>الممثل:</dt><dd data-out="partyBRep" class="fill" data-fallback="_______">_______</dd>
+                <dt>الهوية:</dt><dd data-out="partyBID" class="fill" data-fallback="_______">_______</dd>
+                <dt>العنوان:</dt><dd data-out="partyBAddress" class="fill" data-fallback="_______">_______</dd>
+                <dt>الهاتف:</dt><dd data-out="partyBPhone" class="fill" data-fallback="_______">_______</dd>
+                <dt>البريد المعتمد:</dt><dd data-out="partyBEmail" class="fill" data-fallback="_______">_______</dd>
+              </dl>
+            </div>
+          </div>
+        </section>
+
+        <section class="doc-section">
+          <h3><span class="badge">٢</span> الباقات والخدمات المُتفق عليها</h3>
+          <p style="margin-bottom: 8px;">يلتزم الطرف الأول بتقديم الباقات التالية للطرف الثاني وفق المواصفات والبنود الموضحة بكل باقة:</p>
+          <p data-out="projectTitle" class="fill" style="margin-bottom: 12px; font-weight: 600;" data-fallback="_______">_______</p>
+
+          <div class="packages-display" id="packages-display"><div class="doc-package">
+      <div class="pk-head">
+        <div class="pk-title">
+          <span class="pk-tag">باقة 1</span>
+          <span><span class="fill">— اسم الباقة يُحدَّد —</span></span>
+        </div>
+        <div class="pk-price"><span class="fill">— السعر —</span></div>
+      </div>
+      <div class="pk-details-empty">— تفاصيل وبنود الباقة تُحدَّد هنا —</div>
+    </div></div>
+
+          <div class="grand-total">
+            <span class="gt-label">إجمالي قيمة العقد</span>
+            <span class="gt-value"><span id="packages-total">0</span> <span data-out="currency" data-fallback="جنيه مصري">ريال سعودي</span></span>
+          </div>
+          <div class="amount-words">المبلغ كتابةً: <strong id="amount-words">—</strong></div>
+        </section>
+
+        <section class="doc-section">
+          <h3><span class="badge">٣</span> القيمة المالية وآلية الدفع</h3>
+          <div class="payment-box">
+            <div class="pb">
+              <div class="k">القيمة الإجمالية</div>
+              <div class="v"><span id="packages-total-2">0</span> <span data-out="currency" data-fallback="جنيه مصري">ريال سعودي</span></div>
+            </div>
+            <div class="pb">
+              <div class="k">طريقة الدفع</div>
+              <div class="v" data-out="paymentMethod" data-fallback="تحويل بنكي">تحويل بنكي</div>
+            </div>
+            <div class="pb">
+              <div class="k">ملاحظات</div>
+              <div class="v" data-out="paymentNotes" data-fallback="—">—</div>
+            </div>
+          </div>
+          <p class="doc-note">تُعدّ القيم المذكورة غير شاملةٍ لضريبة القيمة المضافة ما لم يُنَصّ على خلاف ذلك كتابةً، وتُحتسب الضريبة (إن وُجدت) وفقاً للأنظمة المعمول بها في بلد التعاقد.</p>
+        </section>
+
+        <section class="doc-section">
+          <h3><span class="badge">٤</span> مدة العقد</h3>
+          <p>يبدأ تنفيذ هذا العقد اعتباراً من <strong data-out="startDate" data-format="date" class="fill" data-fallback="_______">_______</strong> وحتى <strong data-out="endDate" data-format="date" class="fill" data-fallback="_______">_______</strong>.<span data-out="durationNotes" data-prefix=" — " data-fallback="_______" class="fill">_______</span></p>
+        </section>
+
+        <section class="doc-section">
+          <h3><span class="badge">٥</span> الشروط والأحكام</h3>
+          <ol class="terms-list" id="terms-list">
+            <li>
+              <strong class="term-title">آلية العمل والاعتمادات</strong>
+              <span class="term-body">يلتزم الطرف الثاني (العميل) بتوفير كافة المعلومات، والشعارات، والمواد الأساسية اللازمة للعمل فور توقيع العقد. ويُعد تأخر الطرف الثاني في تسليم هذه المواد أو في اعتماد التصاميم والخطط مبرراً لتمديد فترة التسليم المتفق عليها.</span>
+            </li>
+            <li>
+              <strong class="term-title">سياسة التعديلات</strong>
+              <span class="term-body">يحق للطرف الثاني طلب التعديل على الأعمال المُقدمة بحدٍّ أقصى <strong class="term-var" data-out="revisionsCount" data-fallback="تعديلين اثنين">تعديلين اثنين</strong> لكل تصميم أو خطة. وأي تعديلات إضافية بعد استنفاد هذا الحد، أو طلب تغيير جذري بعد الاعتماد المبدئي، تخضع لتكلفة إضافية يُتفق عليها مسبقاً.</span>
+            </li>
+            <li>
+              <strong class="term-title">التزامات الدفع</strong>
+              <span class="term-body">في حال تأخر الطرف الثاني عن سداد الدفعات المستحقة لمدة تتجاوز <strong class="term-var" data-out="paymentGraceDays" data-fallback="7 أيام عمل">7 أيام عمل</strong> من تاريخ الاستحقاق، يحق للطرف الأول إيقاف العمل مؤقتاً لحين السداد، مع عدم تحمّله أي مسؤولية ناتجة عن تأخر النتائج أو الحملات الإعلانية.</span>
+            </li>
+            <li>
+              <strong class="term-title">حقوق الملكية الفكرية</strong>
+              <span class="term-body">تؤول حقوق الملكية الفكرية للأعمال النهائية المُسلّمة للطرف الثاني فور سداد كامل المستحقات المالية. ولا يشمل ذلك تسليم الملفات المصدرية المفتوحة (Source Files) إلا باتفاق مالي منفصل. ويحق للطرف الأول استخدام الأعمال المنفذة في معرض أعماله (Portfolio) لأغراض ترويجية ما لم يطلب الطرف الثاني غير ذلك كتابياً.</span>
+            </li>
+            <li>
+              <strong class="term-title">السرية</strong>
+              <span class="term-body">يلتزم كلا الطرفين بالحفاظ على سرية المعلومات والبيانات الخاصة بالطرف الآخر التي يتم الاطلاع عليها خلال فترة العقد، وتظل التزامات السرية سارية لمدة <strong class="term-var" data-out="confidentialityDuration" data-fallback="سنتين">سنتين</strong> من تاريخ انتهاء العقد أو فسخه.</span>
+            </li>
+            <li>
+              <strong class="term-title">إنهاء العقد</strong>
+              <span class="term-body">يحق لأيٍّ من الطرفين فسخ العقد بإخطار كتابي مسبق لا تقل مدته عن <strong class="term-var" data-out="terminationNotice" data-fallback="30 يوماً">30 يوماً</strong>. فإن كان الفسخ بالإرادة المنفردة ودون سبب، التزم الطرف الثاني بسداد قيمة كافة الأعمال التي أُنجزت فعلياً حتى تاريخ الفسخ، وتُسوّى الدفعات المقدمة على هذا الأساس بحيث يُرَدّ ما يقابل غير المُنجَز منها إن وُجد. أمّا إن كان الفسخ ناتجاً عن إخلال أحد الطرفين بالتزاماته، فلا يقع إلا بعد إنذاره كتابياً ومنحه مهلة معقولة للتدارك، مع عدم الإخلال بحق الطرف المتضرر في المطالبة بالتعويض عمّا لحقه من ضرر.</span>
+            </li>
+            <li>
+              <strong class="term-title">القوة الرياض</strong>
+              <span class="term-body">لا يتحمل أيٌّ من الطرفين مسؤولية التأخير أو الإخفاق في تنفيذ الالتزامات إذا كان ذلك ناتجاً عن ظروف خارجة عن الإرادة (قوة قاهرة)، كالأعطال التقنية العالمية للمنصات (مثل توقف خوادم «ميتا» أو «جوجل»)، أو الكوارث الطبيعية.</span>
+            </li>
+            <li>
+              <strong class="term-title">حل النزاعات والقانون الحاكم</strong>
+              <span class="term-body">يخضع هذا العقد ويُفسَّر وفقاً للقوانين المعمول بها في <strong class="term-var" data-out="jurisdiction" data-fallback="المملكة العربية السعودية">المملكة العربية السعودية</strong>. وفي حال نشوء أي نزاع — لا قدّر الله — يُحَلّ ودياً خلال <strong class="term-var" data-out="amicableDays" data-fallback="15 يوماً">15 يوماً</strong>، فإن تعذّر ذلك تختص <strong class="term-var" data-out="courts" data-fallback="المحكمة المختصة حسب الاتفاق">المحكمة المختصة حسب الاتفاق</strong> بالنظر فيه.</span>
+            </li>
+          </ol>
+          <ol class="terms-list" id="custom-terms-list" style="counter-reset: t 8; margin-top: 8px;"></ol>
+        </section>
+
+        <section class="doc-section doc-closing">
+          <p>حُرِّر هذا العقد من نسختين أصليتين بذات المحتوى، تسلّم كلُّ طرفٍ نسخةً منهما للعمل بموجبها عند الاقتضاء. وقد أقرّ الطرفان بأهليتهما، وبقراءة جميع بنود هذا العقد وفهمها والموافقة عليها، وذيّلاه بالتوقيع أدناه.</p>
+        </section>
+
+        <div class="signatures">
+          <div class="sig-block sig-block-stamped">
+            <div class="sig-role">الطرف الأول</div>
+            <div class="sig-name" data-out="partyAName" data-fallback="بيكسل للتسويق والإبداع">بيكسل للتسويق والإبداع</div>
+            <img class="pixel-logo" src="./logo-light.webp" alt="بيكسل Pixel Agency">
+            <div class="sig-line"></div>
+            <div class="sig-cap">التوقيع والختم</div>
+          </div>
+          <div class="sig-block">
+            <div class="sig-role">الطرف الثاني</div>
+            <div class="sig-name fill" data-out="partyBName" data-fallback="_______">_______</div>
+            <div class="sig-line"></div>
+            <div class="sig-cap">التوقيع</div>
+          </div>
+        </div>
+      </div>
+
+      <footer class="doc-footer">
+        <div class="f-logo"><svg class="ap" aria-hidden="true" focusable="false" viewBox="0 0 148.35 158.64"><g>
+    <g>
+      <path d="M146.59,72.04l-3.4-7.92,1.81-.67c-1.6.36-3.06-.77-2.05-2.29.29-.43,1.29-.17,1.14-.88-2.82.4-4-3.36-1.81-4.98-.51-.43-1.61,1.51-2.9.49l-.27-1.86-2.21-.06-.53-1.76c-1.76,1-2.34-.48-3.47-.75-3.19-.75-11.07-2.87-13.97-2.87h-27.41c1.48-8.3,2.65-17.61,1.3-26-.51-3.19-1.75-9.26-6.12-8.08-4.73,1.28-.99,5.02-.04,7.89,2.56,7.78,1.73,16.77,1.23,24.82-.72.77-10.64-5.4-12.12-6.2-3.59-1.95-6.94-4-11.09-5.24-6-1.8-11.18-1.86-17.36-1.63l-.43.84c-1.43-1.79-.98-.09-1.94.45-.57.32-1.81.41-2.68.83-7.54,3.65-13.32,9.22-17.45,16.54-1.01,1.79-4.04,9.78-5.21,10.2-.47.16-1.01.09-1.5.08.02-.22.01-.42.02-.63-.14.09-.28.18-.43.26.14.3.28.58.41.83-6.32,1.64-14.04,3.09-18.12,8.61,2.93-.45,5.61-3.06,8.61-2.49l-2.26,2.49c3.83-.79,6.74-3.03,10.88-2.26l-.35.83c1.65.1.17.45.09,1.18-.94,8.93-2.08,17.58-1.05,26.7.48,4.26,1.56,8.55,2.66,12.69-1.35,1.93-1.91.49-3.33.71-.35.05-.11,1.01-.95.98-1.31-.05-2.86-1.74-4.32-1.18,2.97,2.72,7.58,2.48,10.42,4.99-.67.5-1.98.24-2.73.01-1.09-.32-4.28-3.37-4.06-1.16l7.73,3.94c.77,4.76,5.47,10.48,6.56,14.65.16.6-.31,1.31-.26,1.35.14.1.91-.26,1.4.29,1.15,1.28,3.13,5.79,4.18,6.83.68.68,3.71,1.61,4.39,3.08l-1.81,1.13c3.74-1.03,5.97,1.81,9.52,2.26l-.33-.81.8-.35-.93-2.46c.73-.33,4.05,1.5,4.39,1.95.56.72.58,3,1.8,3.41l4.68.07c-.35-.51-1.74-2.12-.22-1.82,1.29.26,2.97,1.92,4.17,2.18,3.38.74,7.28.49,11.11,1.58,4.78,1.37,9.06,4.15,13.96,5.37.48.06.96.11,1.44.17.76.02,1.58,0,2.29.11,1.41-.03,2.83,0,4.25.04.08,0,.15,0,.23,0,1.2.04,2.39.08,3.57.11.75-.09,1.5-.22,2.24-.39.01-.17.03-.35.07-.52h1.84c1.01-.29,2-.63,2.98-1.02,1.07-1.03,3.27-1.62,4.51-2.15,1.78-.98,3.51-2.07,5.16-3.25.73-.84,1.69-1.36,2.72-2.03,3.07-2.4,6.08-5.01,8.86-7.83.19-.47.59-.95,1.3-1.44,0,.03,0,.06,0,.08.35-.37.68-.74,1.02-1.12,1.26-2.29,5.92-7.27,6.91-8.93l-.03.22c2.54-3.51,4.95-7.3,6.48-11.03l-.11-.29.28-.14c.12-.3.24-.6.34-.9.01-.04.03-.08.05-.11l-.64-1.59c-.45-.34-1.73,1.07-1.38-.64l2.67-.06c1.94-6.22,4.85-13.21,5.46-19.73.09-.96-.45-1.65-.44-2.16,0-.27.83-.21.92-.56.23-.95-.44-2.37.45-3.11.52-6.21-.1-12.16-1.58-17.9Z"></path>
+      <path d="M74.61,6.05c4.03,4.09,5.95,11.34,7.45,16.77-8.26,5.28-17.61,5.07-26.33.98-3.92-1.84-8.22-5.75-12.31-6.73-1.41-.33-9.1-.88-9.44-1.22.04-1.65.51-3.08,2.27-2.27-2.13-2.81.29-2.04,1.28-2.41.1-.04.46-1.15,1.78-.67l5.78,5.35c.37.07-.09-1.76,1.12-1.37.07-.72-.95-.55-1.5-.89s.2-1.32-1.66-.46c-.07-3.47-3.21-3-5.89-3.18l2.02-3.06c2.65,1.67,3.48.56,6.14.35v1.36s-.91.22-.91.22l1.14.24.96-1.77,1.98-.05-.23,1.79c1.25-.1,2.84-1.57,3.74-1.74,1.51-.28,2.12,1.01,3.74-.53l-.22-.9-6.12-.45.28-1.39,1.98-1.32c-.39-.09-4.75-.85-3.63-1.82,1.63-.03,5.03-1.1,6.36-.22.69.46-.1,1.78,2.25.67l-1.36-1.35c6.71.31,14.33.98,19.32,6.05Z"></path>
+      <path d="M117.03,26.15c.56.36,1.78.15,2.34.53.44.31.13,1.2.3,1.34.27.24,1.35-.07,1.94.13.66.21.6,1.24,1.04,1.33.86.17,1.79-.75,2.85-.28.73.32,1.91,2.19,2.73,2.74,0,.85-8.03,4.06-9.4,4.63-.55.23-.48.9-.89,1.02-.79.22-4.04.79-4.93.88-5.65.53-11.37-.16-16.95-.86,1.55-5.65,6.38-15.97,12.87-16.69,1.11-.13,5.03.39,5.87.9.99.6,1.14,3.65,2.23,4.34Z"></path>
+      <path d="M138.77,47.46c-1.57-1.63-.01-4.16,2.16-2.83s-.55,4.5-2.16,2.83Z"></path>
+    </g>
+  </g></svg></div>
+        <div class="f-meta">
+          <strong>بيكسل</strong> · نَصنع العلاماتِ التي لا تُنسى
+        </div>
+        <div class="f-page">صفحة ١</div>
+      </footer>
+    </div>
+  </main>
+</div>
+
+<div class="app-foot">
+  صُمم بهوية <span>بيكسل</span> · يتحدث لحظياً مع كل خانة
+</div>
+
+<script>
+// ============================================
+// State
+// ============================================
+const state = {
+  packages: [{ name: "", details: "", price: 0 }],
+};
+
+// Preset packages library — quick-pick options
+const PACKAGE_PRESETS = [
+  {
+    name: "باقة السوشيال ميديا",
+    details: "إدارة 3 منصات (Facebook · Instagram · TikTok)\nإنتاج 20 منشور شهرياً (تصميم + كتابة)\n4 فيديوهات قصيرة (Reels / Shorts)\nالرد على التعليقات والرسائل خلال 4 ساعات\nتقرير شهري مفصل بالأداء والمتابعين",
+  },
+  {
+    name: "باقة الإعلانات الممولة",
+    details: "إعداد وإطلاق حملات على Meta Ads و Google Ads\nاستهداف دقيق للجمهور المثالي\nتصميم 5 إعلانات (صور + فيديو)\nمتابعة الحملة وتحسين الأداء يومياً\nتقرير ROI أسبوعي",
+  },
+  {
+    name: "باقة الـ SEO",
+    details: "تحليل شامل للموقع تقنياً وفنياً\nبحث الكلمات المفتاحية المستهدفة\nتحسين on-page لـ 20 صفحة\nبناء روابط خلفية عالية الجودة\nتقرير شهري بترتيب الكلمات المفتاحية",
+  },
+  {
+    name: "باقة الهوية البصرية",
+    details: "تصميم شعار احترافي (3 خيارات)\nدليل الهوية البصرية كاملاً (ألوان · خطوط · استخدامات)\nقوالب السوشيال ميديا الجاهزة\nترويسة وخاتمة بريد إلكتروني\nتسليم جميع الملفات بصيغ مختلفة",
+  },
+  {
+    name: "باقة إنتاج المحتوى",
+    details: "إنتاج 30 فيديو شهرياً (Short-form)\nكتابة سيناريوهات احترافية\nتصوير ومونتاج كامل\nإضافة موشن جرافيك ومؤثرات صوتية\nتسليم الملفات بصيغة عالية الجودة",
+  },
+  {
+    name: "باقة المتجر الإلكتروني",
+    details: "تصميم وتطوير المتجر بالكامل\nإضافة المنتجات وتصنيفها (حتى 100 منتج)\nربط بوابات الدفع الإلكتروني\nتحسين تجربة المستخدم على الجوال\nتدريب فريق العميل على إدارة المتجر",
+  },
+  {
+    name: "باقة التسويق المتكامل",
+    details: "استراتيجية تسويق شاملة لمدة 3 شهور\nإدارة كل قنوات التواصل والإعلانات\nإنتاج محتوى متنوع (مكتوب · مرئي · فيديو)\nتحليل المنافسين شهرياً\nمدير حساب مخصص واجتماع أسبوعي",
+  },
+];
+
+// ============================================
+// Helpers
+// ============================================
+const $ = (s, root = document) => root.querySelector(s);
+const $$ = (s, root = document) => Array.from(root.querySelectorAll(s));
+
+function fmtDate(value) {
+  if (!value) return "_______";
+  try {
+    const d = new Date(value);
+    if (isNaN(d.getTime())) return value;
+    return d.toLocaleDateString("ar-EG", { year: "numeric", month: "long", day: "numeric" });
+  } catch { return value; }
+}
+
+function fmtMoney(n) {
+  if (!n || isNaN(n)) return "0";
+  return Number(n).toLocaleString("en-US");
+}
+
+// Arabic amount-in-words (تفقيط) for whole numbers
+function tafqeet(num) {
+  num = Math.floor(Math.abs(Number(num) || 0));
+  if (num === 0) return "صفر";
+  const ones = ["","واحد","اثنان","ثلاثة","أربعة","خمسة","ستة","سبعة","ثمانية","تسعة","عشرة","أحد عشر","اثنا عشر","ثلاثة عشر","أربعة عشر","خمسة عشر","ستة عشر","سبعة عشر","ثمانية عشر","تسعة عشر"];
+  const tens = ["","","عشرون","ثلاثون","أربعون","خمسون","ستون","سبعون","ثمانون","تسعون"];
+  const hundreds = ["","مائة","مئتان","ثلاثمائة","أربعمائة","خمسمائة","ستمائة","سبعمائة","ثمانمائة","تسعمائة"];
+  const scales = [null, {s:"ألف",d:"ألفان",p:"آلاف"}, {s:"مليون",d:"مليونان",p:"ملايين"}, {s:"مليار",d:"ملياران",p:"مليارات"}];
+  function three(n) {
+    const out = [];
+    const h = Math.floor(n / 100), r = n % 100;
+    if (h) out.push(hundreds[h]);
+    if (r) {
+      if (r < 20) out.push(ones[r]);
+      else {
+        const o = r % 10, t = Math.floor(r / 10);
+        out.push(o ? ones[o] + " و" + tens[t] : tens[t]);
+      }
+    }
+    return out.join(" و");
+  }
+  const groups = [];
+  let n = num;
+  while (n > 0) { groups.push(n % 1000); n = Math.floor(n / 1000); }
+  const words = [];
+  for (let i = groups.length - 1; i >= 0; i--) {
+    const g = groups[i];
+    if (!g) continue;
+    if (i === 0) { words.push(three(g)); }
+    else {
+      const sc = scales[i];
+      if (g === 1) words.push(sc.s);
+      else if (g === 2) words.push(sc.d);
+      else if (g >= 3 && g <= 10) words.push(three(g) + " " + sc.p);
+      else words.push(three(g) + " " + sc.s);
+    }
+  }
+  return words.join(" و");
+}
+
+function escapeHtml(s) {
+  return String(s ?? "").replace(/[&<>"']/g, c =>
+    ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+
+// ============================================
+// Output sync
+// ============================================
+$$("[data-out]").forEach(el => {
+  if (!el.dataset.fallback) {
+    el.dataset.fallback = el.textContent.trim() || "_______";
+  }
+});
+
+function syncFieldOutputs(field, value) {
+  $$(`[data-out="${field}"]`).forEach(el => {
+    const fmt = el.dataset.format;
+    const prefix = el.dataset.prefix || "";
+    const fallback = el.dataset.fallback || "_______";
+
+    if (!value || value === "") {
+      el.textContent = fallback;
+      el.classList.add("fill");
+      if (fallback === "" || fallback === "—") el.classList.remove("fill");
+      return;
+    }
+
+    let display = value;
+    if (fmt === "date") display = fmtDate(value);
+    el.textContent = prefix + display;
+    el.classList.remove("fill");
+  });
+}
+
+// ============================================
+// Bind inputs
+// ============================================
+$$("[data-field]").forEach(input => {
+  const field = input.dataset.field;
+  syncFieldOutputs(field, input.value);
+  input.addEventListener("input", () => {
+    syncFieldOutputs(field, input.value);
+    if (field === "customTerms") renderCustomTerms(input.value);
+    if (field === "currency") renderPackagesDisplay();
+  });
+});
+
+// ============================================
+// Packages repeater
+// ============================================
+const packagesList = $("#packages-list");
+const packagesDisplay = $("#packages-display");
+const totalEl = $("#packages-total");
+const totalEl2 = $("#packages-total-2");
+const amountWordsEl = $("#amount-words");
+
+function renderPackageForms() {
+  packagesList.innerHTML = "";
+  state.packages.forEach((pkg, idx) => {
+    const card = document.createElement("div");
+    card.className = "package-card";
+    const disabled = state.packages.length === 1 ? "disabled" : "";
+
+    const presetButtonsHtml = PACKAGE_PRESETS
+      .map((p, pi) => `<button type="button" class="pkg-preset-btn" data-pkg-preset="${pi}" data-pkg-idx="${idx}">${escapeHtml(p.name)}</button>`)
+      .join("");
+
+    card.innerHTML = `
+      <div class="pkg-head">
+        <div class="pkg-num"><span class="dot">${idx + 1}</span> الباقة رقم ${idx + 1}</div>
+        <button type="button" class="btn-x" data-pkg-remove="${idx}" title="حذف الباقة" ${disabled}>×</button>
+      </div>
+      <div class="pkg-preset">
+        <span style="font-weight:700;">اختر من الباقات الجاهزة:</span>
+        ${presetButtonsHtml}
+      </div>
+      <div class="pkg-body">
+        <div class="pkg-name-row">
+          <label class="fld">
+            <span class="lbl">اسم الباقة</span>
+            <input type="text" placeholder="مثال: باقة السوشيال ميديا" value="${escapeHtml(pkg.name)}" data-pkg-idx="${idx}" data-pkg-key="name">
+          </label>
+          <label class="fld">
+            <span class="lbl">السعر</span>
+            <input type="number" placeholder="0" value="${pkg.price || ""}" data-pkg-idx="${idx}" data-pkg-key="price" min="0" step="any">
+          </label>
+        </div>
+        <label class="fld">
+          <span class="lbl">بنود وتفاصيل الباقة (كل بند في سطر)</span>
+          <textarea rows="5" placeholder="مثال:&#10;إدارة 3 منصات سوشيال ميديا&#10;إنتاج 20 منشور شهرياً&#10;تقرير شهري مفصل" data-pkg-idx="${idx}" data-pkg-key="details">${escapeHtml(pkg.details)}</textarea>
+        </label>
+      </div>
+    `;
+    packagesList.appendChild(card);
+  });
+
+  $$("[data-pkg-idx][data-pkg-key]", packagesList).forEach(inp => {
+    inp.addEventListener("input", e => {
+      const i = parseInt(e.target.dataset.pkgIdx);
+      const k = e.target.dataset.pkgKey;
+      state.packages[i][k] = k === "price" ? parseFloat(e.target.value) || 0 : e.target.value;
+      renderPackagesDisplay();
+    });
+  });
+
+  $$("[data-pkg-preset]", packagesList).forEach(btn => {
+    btn.addEventListener("click", e => {
+      const presetIdx = parseInt(e.currentTarget.dataset.pkgPreset);
+      const pkgIdx = parseInt(e.currentTarget.dataset.pkgIdx);
+      const preset = PACKAGE_PRESETS[presetIdx];
+      state.packages[pkgIdx].name = preset.name;
+      state.packages[pkgIdx].details = preset.details;
+      renderPackageForms();
+      renderPackagesDisplay();
+    });
+  });
+
+  $$("[data-pkg-remove]", packagesList).forEach(btn => {
+    btn.addEventListener("click", e => {
+      const i = parseInt(e.currentTarget.dataset.pkgRemove);
+      state.packages.splice(i, 1);
+      if (state.packages.length === 0) state.packages.push({ name: "", details: "", price: 0 });
+      renderPackageForms();
+      renderPackagesDisplay();
+    });
+  });
+}
+
+function renderPackagesDisplay() {
+  packagesDisplay.innerHTML = "";
+  let total = 0;
+  state.packages.forEach((pkg, idx) => {
+    const card = document.createElement("div");
+    card.className = "doc-package";
+
+    const titleHtml = pkg.name
+      ? escapeHtml(pkg.name)
+      : `<span class="fill">— اسم الباقة يُحدَّد —</span>`;
+
+    const priceHtml = pkg.price
+      ? `${fmtMoney(pkg.price)} <span style="font-size:0.7em; opacity: 0.8;" data-out="currency">جنيه مصري</span>`
+      : `<span class="fill">— السعر —</span>`;
+
+    let detailsHtml;
+    if (pkg.details && pkg.details.trim()) {
+      const lines = pkg.details.split(/\n/).map(l => l.trim()).filter(Boolean);
+      detailsHtml = `<ul class="pk-details">${lines.map(l => `<li>${escapeHtml(l)}</li>`).join("")}</ul>`;
+    } else {
+      detailsHtml = `<div class="pk-details-empty">— تفاصيل وبنود الباقة تُحدَّد هنا —</div>`;
+    }
+
+    card.innerHTML = `
+      <div class="pk-head">
+        <div class="pk-title">
+          <span class="pk-tag">باقة ${idx + 1}</span>
+          <span>${titleHtml}</span>
+        </div>
+        <div class="pk-price">${priceHtml}</div>
+      </div>
+      ${detailsHtml}
+    `;
+    packagesDisplay.appendChild(card);
+    total += parseFloat(pkg.price) || 0;
+  });
+
+  const curr = $('[data-field="currency"]').value || "جنيه مصري";
+  $$('[data-out="currency"]', packagesDisplay).forEach(el => el.textContent = curr);
+
+  totalEl.textContent = fmtMoney(total);
+  totalEl2.textContent = fmtMoney(total);
+  if (amountWordsEl) amountWordsEl.textContent = total > 0 ? `${tafqeet(total)} ${curr} لا غير` : "—";
+}
+
+$("#btn-add-package").addEventListener("click", () => {
+  state.packages.push({ name: "", details: "", price: 0 });
+  renderPackageForms();
+  renderPackagesDisplay();
+});
+
+renderPackageForms();
+renderPackagesDisplay();
+
+// ============================================
+// Custom terms
+// ============================================
+const customTermsList = $("#custom-terms-list");
+function renderCustomTerms(text) {
+  customTermsList.innerHTML = "";
+  if (!text || !text.trim()) return;
+  text.split(/\n/).forEach(line => {
+    const t = line.trim();
+    if (!t) return;
+    const li = document.createElement("li");
+    const span = document.createElement("span");
+    span.className = "term-body";
+    span.textContent = t;
+    li.appendChild(span);
+    customTermsList.appendChild(li);
+  });
+}
+
+// ============================================
+// Today's date
+// ============================================
+const today = new Date().toISOString().slice(0, 10);
+const dateInput = $('[data-field="contractDate"]');
+dateInput.value = today;
+syncFieldOutputs("contractDate", today);
+
+// ============================================
+// Theme switcher (dark + light)
+// ============================================
+const THEMES = ["dark", "light", "neon"];
+const root = document.documentElement;
+$$(".theme-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const theme = btn.dataset.themeSet;
+    root.dataset.theme = theme;
+    $$(".theme-btn").forEach(b => b.classList.toggle("active", b === btn));
+    try { localStorage.setItem("pixel-theme", theme); } catch (e) {}
+  });
+});
+
+try {
+  const saved = localStorage.getItem("pixel-theme");
+  if (saved && THEMES.includes(saved)) {
+    root.dataset.theme = saved;
+    $$(".theme-btn").forEach(b => b.classList.toggle("active", b.dataset.themeSet === saved));
+  }
+} catch (e) {}
+
+// ============================================
+// Mobile tabs
+// ============================================
+$$(".tab-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const tab = btn.dataset.tab;
+    $$(".tab-btn").forEach(b => b.classList.toggle("active", b === btn));
+    $("#formSide").classList.toggle("active", tab === "form");
+    $("#previewSide").classList.toggle("active", tab === "preview");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+});
+
+// ============================================
+// Buttons
+// ============================================
+$("#btn-print").addEventListener("click", async () => {
+  await document.fonts.ready;
+  renderPixel();
+  await Promise.all(Array.from(document.querySelectorAll("#pages img")).map(i => i.decode().catch(()=>{})));
+  $("#previewSide").classList.add("active");
+  $("#formSide").classList.remove("active");
+  document.title = kindNames[docKind] + " - " + field("contractNumber") + " - بيكسل";
+  window.print();
+});
+
+const KEEP_DEFAULTS = {
+  contractNumber: "PX-2026-001",
+  city: "الرياض",
+  partyAName: "بيكسل للتسويق والإبداع",
+  partyARole: "المدير العام",
+  partyAEmail: "",
+  revisionsCount: "تعديلين اثنين",
+  paymentGraceDays: "7 أيام عمل",
+  terminationNotice: "30 يوماً",
+  amicableDays: "15 يوماً",
+  confidentialityDuration: "سنتين",
+  jurisdiction: "المملكة العربية السعودية",
+  courts: "المحكمة المختصة حسب الاتفاق",
+};
+
+$("#btn-reset").addEventListener("click", () => {
+  if (!confirm("مسح جميع البيانات وإعادة التعيين؟")) return;
+  $$("[data-field]").forEach(inp => {
+    const f = inp.dataset.field;
+    if (inp.tagName === "SELECT") inp.selectedIndex = 0;
+    else if (inp.type === "date") inp.value = "";
+    else if (Object.prototype.hasOwnProperty.call(KEEP_DEFAULTS, f)) inp.value = KEEP_DEFAULTS[f];
+    else inp.value = "";
+  });
+  $$("[data-field]").forEach(inp => syncFieldOutputs(inp.dataset.field, inp.value));
+  state.packages = [{ name: "", details: "", price: 0 }];
+  renderPackageForms();
+  renderPackagesDisplay();
+  renderCustomTerms("");
+  dateInput.value = today;
+  syncFieldOutputs("contractDate", today);
+});
+</script>
+<script src="./pixel.js"></script>
+
+</body></html>
