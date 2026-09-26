@@ -54,7 +54,7 @@ document.querySelector('#choose-type').addEventListener('click',()=>{document.bo
 document.querySelectorAll('.tab-btn').forEach(b=>b.addEventListener('click',()=>requestAnimationFrame(renderPixel)));
 function brandLogo(){return document.documentElement.dataset.theme==='dark'?'./logo-dark.webp':'./logo-light.webp'}
 function pixelSeal(){
- return `<span class="pixel-seal" role="img" aria-label="ختم Pixel Agency"><img src="./logo-white.webp" alt="Pixel Agency"></span>`;
+ return `<span class="pixel-seal" role="img" aria-label="ختم Pixel Agency"><img src="./logo-white.webp" alt="Pixel Agency"><span class="seal-en" dir="ltr">PIXEL AGENCY</span></span>`;
 }
 function renderPixel(){
  document.querySelectorAll('.pixel-logo').forEach(i=>i.src=brandLogo());

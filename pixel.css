@@ -32,3 +32,6 @@ body{background:var(--bg-app);font-family:Cairo,sans-serif;font-size:16px}button
 @media print{.gold-guarantee,.gold-guarantee *{color:#483711!important}.gold-guarantee{print-color-adjust:exact!important;-webkit-print-color-adjust:exact!important}.signature-row,.pixel-seal{break-inside:avoid}}
 
 .signature-row{height:36px}.signature-line{height:30px;min-height:30px;position:relative}.signature-line>span{white-space:nowrap;line-height:26px;font-size:10px}.px-pagination{direction:ltr;white-space:nowrap}
+
+/* Angled rectangular brand stamp. */
+.pixel-seal{transform:rotate(-8deg);height:84px;gap:2px;margin:14px 0;opacity:.9}.pixel-seal img{width:100px;height:43px}.pixel-seal .seal-en{font-family:Arial,sans-serif;font-size:10px;font-weight:700;letter-spacing:1.5px;line-height:14px}.seal-slot{min-height:116px}
