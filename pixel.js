@@ -6,6 +6,7 @@ const esc=escapeHtml;
 const num=k=>Math.max(0,Number(field(k))||0);
 const money=n=>new Intl.NumberFormat('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}).format(n);
 const input=(key,label,type='text',value='')=>`<label class="fld"><span class="lbl">${label}</span><input type="${type}" data-field="${key}" value="${value}" ${type==='number'?'min="0" step="0.01"':''}></label>`;
+document.querySelectorAll('[data-field=discount]').forEach(e=>e.closest('fieldset').remove());
 const financial=document.createElement('fieldset');
 financial.innerHTML=`<legend>الحسابات وبيانات السداد</legend><div class="field-grid">${input('discount','الخصم (مبلغ)','number','0')}${input('taxRate','نسبة الضريبة %','number','0')}${input('paid','المبلغ المدفوع','number','0')}${input('dueDate','تاريخ الاستحقاق / انتهاء العرض','date')}${input('companyTax','الرقم الضريبي لبيكسل')}${input('clientTax','الرقم الضريبي للعميل')}${input('bank','اسم البنك')}${input('iban','رقم الحساب / IBAN')}</div><p class="tip">أدخل الضريبة المطبقة على معاملتك. لا تُضاف ضريبة تلقائياً.</p>`;
 document.querySelector('.action-bar').before(financial);
@@ -17,6 +18,30 @@ document.querySelector('[data-field="partyAEmail"]').placeholder='البريد �
 document.querySelector('[data-field="contractNumber"]').value='PX-CTR-'+new Date().getFullYear()+'-001';
 document.querySelector('[data-field="dueDate"]').value=new Date(Date.now()+14*86400000).toISOString().slice(0,10);
 document.querySelectorAll('[data-field]').forEach(i=>syncFieldOutputs(i.dataset.field,i.value));
+
+for(const prefix of ['partyA','partyB']){
+ const group=document.querySelector(`[data-field="${prefix}Name"]`).closest('fieldset');
+ const grid=group.querySelector('.field-grid')||group;
+ if(prefix==='partyB'){
+  const existing=document.querySelector('[data-field="partyBID"]');
+  existing.dataset.field='partyBCR';existing.previousElementSibling.textContent='السجل التجاري';existing.placeholder='رقم السجل التجاري';
+ }else grid.insertAdjacentHTML('beforeend',input('partyACR','السجل التجاري'));
+ grid.insertAdjacentHTML('beforeend',input(prefix+'Website','الموقع الإلكتروني','url'));
+ document.querySelector(`[data-field="${prefix}Rep"]`).previousElementSibling.textContent='يمثلها في هذا المستند';
+}
+document.querySelector('[data-field="partyAEmail"]').value='info@pixelagencysa.com';
+const customInput=document.querySelector('[data-field="customTerms"]');
+customInput.previousElementSibling.textContent='عنوان البند في السطر الأول، والتفاصيل تحته. افصل بين البنود بسطر فارغ.';
+customInput.placeholder='عنوان البند الإضافي\nتفاصيل البند وشروطه\n\nعنوان البند التالي\nتفاصيل البند التالي';
+const signEditor=document.createElement('fieldset');
+signEditor.innerHTML='<legend>الأسماء والتوقيعات</legend>'+['partyA','partyB'].map((prefix,i)=>`<h3>${i?'الطرف الثاني':'الطرف الأول'}</h3><div class="field-grid">${input(prefix+'SignName','الاسم')}${input(prefix+'Signature','التوقيع المكتوب')}${input(prefix+'SignDate','التاريخ','date')}</div>`).join('');
+document.querySelector('.action-bar').before(signEditor);
+const goldEditor=document.createElement('fieldset');goldEditor.dataset.contractOnly='';
+goldEditor.innerHTML=`<legend>الضمان الذهبي</legend><label class="fld"><span class="lbl">إضافة الضمان إلى العقد</span><select data-field="goldEnabled"><option value="no">غير مفعّل</option><option value="yes">تفعيل الضمان الذهبي</option></select></label><div id="gold-fields" hidden>${input('goldTitle','عنوان الضمان','text','الضمان الذهبي')}<label class="fld"><span class="lbl">وصف الضمان</span><textarea data-field="goldDescription" rows="3" placeholder="اكتب الالتزام الذي يشمله هذا الضمان"></textarea></label><label class="fld"><span class="lbl">نطاق الضمان وشروطه ومدته</span><textarea data-field="goldConditions" rows="4" placeholder="حدد الحالات المشمولة والاستثناءات والمدة وآلية الاستفادة"></textarea></label></div>`;
+document.querySelector('.action-bar').before(goldEditor);
+document.querySelector('[data-field="goldEnabled"]').addEventListener('change',()=>{document.querySelector('#gold-fields').hidden=field('goldEnabled')!=='yes'});
+document.querySelector('#btn-reset').addEventListener('click',()=>{document.querySelector('#gold-fields').hidden=field('goldEnabled')!=='yes'});
+
 let raf;
 function schedule(){cancelAnimationFrame(raf);raf=requestAnimationFrame(renderPixel)}
 document.querySelector('#contract-form').addEventListener('input',schedule);
@@ -29,7 +54,7 @@ document.querySelector('#choose-type').addEventListener('click',()=>{document.bo
 document.querySelectorAll('.tab-btn').forEach(b=>b.addEventListener('click',()=>requestAnimationFrame(renderPixel)));
 function brandLogo(){return document.documentElement.dataset.theme==='dark'?'./logo-dark.webp':'./logo-light.webp'}
 function pixelSeal(){
- return `<span class="pixel-seal" role="img" aria-label="ختم بيكسل للتسويق والإبداع"><span class="seal-ar">بيكسل</span><img src="./logo-white.webp" alt=""><span class="seal-en" dir="ltr">PIXEL AGENCY</span><span class="seal-sub">للتسويق والإبداع</span></span>`;
+ return `<span class="pixel-seal" role="img" aria-label="ختم Pixel Agency"><img src="./logo-white.webp" alt="Pixel Agency"></span>`;
 }
 function renderPixel(){
  document.querySelectorAll('.pixel-logo').forEach(i=>i.src=brandLogo());
@@ -39,8 +64,9 @@ function renderPixel(){
  const discount=Math.min(num('discount'),subtotal);const taxable=subtotal-discount;const rate=Math.min(num('taxRate'),100);const tax=Math.round(taxable*rate)/100;const total=Math.round((taxable+tax)*100)/100;const paid=num('paid');const due=Math.max(0,total-paid);
  const blocks=[];const add=(html,cls='')=>blocks.push(`<div class="px-block ${cls}">${html}</div>`);
  add(`<h1 class="px-title">${kindNames[docKind]}</h1><div class="px-en">${kindEnglish[docKind]}</div><div class="px-meta"><span>تاريخ الإصدار: <b>${date('contractDate')}</b></span><span>المدينة: <b>${val('city')}</b></span>${docKind!=='contract'?`<span>${docKind==='quote'?'صالح حتى':'تاريخ الاستحقاق'}: <b>${date('dueDate')}</b></span>`:''}</div>`);
- const party=(prefix,label)=>`<div class="px-party"><h3>${label}</h3><b>${val(prefix+'Name')}</b>${['Rep','Address','Phone','Email'].filter(k=>field(prefix+k)).map(k=>`<div>${val(prefix+k)}</div>`).join('')}${field(prefix==='partyA'?'companyTax':'clientTax')?`<div>الرقم الضريبي: ${val(prefix==='partyA'?'companyTax':'clientTax')}</div>`:''}${prefix==='partyB'&&field('partyBID')?`<div>السجل / الهوية: ${val('partyBID')}</div>`:''}</div>`;
- add(`<div class="px-grid">${party('partyA',docKind==='contract'?'الطرف الأول · مقدم الخدمة':'مقدم الخدمة')}${party('partyB',docKind==='contract'?'الطرف الثاني · العميل':'مقدم إلى')}</div>`);
+ const party=(prefix,label)=>`<section class="px-party"><h3>${label}</h3><table class="party-table"><tbody>${[['Name','الاسم'],['CR','السجل التجاري'],['Address','العنوان'],['Email','البريد الإلكتروني'],['Website','الموقع الإلكتروني'],['Phone','رقم الجوال'],['Rep','يمثلها في هذا المستند']].map(([k,label])=>`<tr><th>${label}</th><td><bdi>${val(prefix+k)}</bdi></td></tr>`).join('')}${field(prefix==='partyA'?'companyTax':'clientTax')?`<tr><th>الرقم الضريبي</th><td><bdi>${val(prefix==='partyA'?'companyTax':'clientTax')}</bdi></td></tr>`:''}</tbody></table></section>`;
+ add(party('partyA','بيانات الطرف الأول · مقدم الخدمة'));
+ add(party('partyB','بيانات الطرف الثاني · المستفيد'));
  if(docKind==='contract')add('اتفق الطرفان على تقديم الخدمات التسويقية والإبداعية الموضحة أدناه، وفق نطاق العمل والمقابل المالي والمدة والشروط الواردة في هذا العقد.');
  if(docKind==='quote')add('يسر بيكسل تقديم عرضها للخدمات التالية. يوضح هذا العرض نطاق العمل والتكلفة وشروط البدء، ويصبح نافذاً بعد الاعتماد الكتابي والاتفاق على موعد التنفيذ.');
  if(field('projectTitle'))add(`<strong>${val('projectTitle')}</strong>`);
@@ -61,10 +87,17 @@ function renderPixel(){
  }else{
  add('<h2 class="px-section-title">ملاحظات الفاتورة</h2><p>يرجى إرفاق رقم الفاتورة مع التحويل، وإرسال إشعار السداد إلى جهة التواصل الموضحة أعلاه لمطابقة الدفعة. لا تُعد هذه الفاتورة إيصالاً باستلام المبلغ إلا في حدود المبلغ المدفوع المبيّن فيها.</p>','px-note');
  }
- if(field('customTerms'))field('customTerms').split('\n').filter(Boolean).forEach(t=>add(`<p>${esc(t)}</p>`,'px-note'));
- if(docKind!=='invoice')add(`<div class="px-signatures"><div class="px-provider-sign"><span><b>${val('partyAName')}</b><br>الاسم والتوقيع: ______________<br>التاريخ: ______________</span>${pixelSeal()}</div><div><b>${val('partyBName')}</b><br>${docKind==='quote'?'اعتماد العرض':'الاسم والتوقيع'}: __________________<br>التاريخ: __________________</div></div>`);
- else add(`<div class="px-invoice-seal"><span><b>${val('partyAName')}</b><br><small>ختم مقدم الخدمة</small></span>${pixelSeal()}</div>`);
- let content;const newPage=()=>{let page=document.createElement('article');page.className='px-page px-'+docKind;page.innerHTML=`<header class="px-head"><img src="${brandLogo()}" alt="بيكسل"><div><small>${kindEnglish[docKind]}</small><b dir="ltr">${val('contractNumber')}</b></div></header><div class="px-content"></div><footer class="px-foot"><span>PIXEL AGENCY · بيكسل للتسويق والإبداع</span><span class="px-pagination"></span></footer>`;host.append(page);content=page.querySelector('.px-content');return page};newPage();
+ const custom=field('customTerms').split(/\n\s*\n/).filter(t=>t.trim());
+ if(custom.length){
+  add('<h2 class="px-section-title">الشروط المخصصة</h2>');
+  custom.forEach((t,i)=>{const lines=t.trim().split('\n');const title=lines.shift();add(`<strong>${(docKind==='contract'?9:0)+i+1}. ${esc(title)}</strong>${lines.length?`<p>${esc(lines.join('\n'))}</p>`:''}`,'px-term')});
+ }
+ if(docKind==='contract'&&field('goldEnabled')==='yes'){
+  add(`<div class="gold-guarantee"><div class="gold-badge" aria-label="ختم الضمان الذهبي"><span>✦</span><b>الضمان الذهبي</b><small>PIXEL AGENCY</small></div><div><h2>${val('goldTitle')}</h2><p>${val('goldDescription')}</p>${field('goldConditions')?`<h3>نطاق الضمان وشروطه</h3><p>${val('goldConditions')}</p>`:''}</div></div>`);
+ }
+ const signature=prefix=>`<div class="signature-fields">${[['SignName','الاسم','text'],['Signature','التوقيع','text'],['SignDate','التاريخ','date']].map(([key,label,type])=>`<div class="signature-row"><span>${label}</span><span class="signature-line"><span>${key==='SignDate'? (field(prefix+key)?date(prefix+key):''):esc(field(prefix+key))}</span></span></div>`).join('')}</div>`;
+ add(`<div class="px-signatures"><div><b>${val('partyAName')}</b>${signature('partyA')}<div class="seal-slot">${pixelSeal()}</div></div><div><b>${val('partyBName')}</b>${signature('partyB')}<div class="seal-slot"></div></div></div>`);
+ let content;const newPage=()=>{let page=document.createElement('article');page.className='px-page px-'+docKind;page.innerHTML=`<header class="px-head"><img src="${brandLogo()}" alt="بيكسل"><div><small>${kindEnglish[docKind]}</small><b dir="ltr">${val('contractNumber')}</b></div></header><div class="px-content"></div><footer class="px-foot"><span>PIXEL AGENCY · بكسل للتسويق والإبداع<br><bdi>info@pixelagencysa.com</bdi></span><span class="px-pagination"></span></footer>`;host.append(page);content=page.querySelector('.px-content');return page};newPage();
  const insert=html=>{const wrap=document.createElement('div');wrap.innerHTML=html;const node=wrap.firstElementChild;content.append(node);if(content.scrollHeight>content.clientHeight+1&&content.children.length>1){node.remove();const prev=content.lastElementChild;const heading=prev?.children.length===1&&prev.firstElementChild?.classList.contains('px-section-title')?prev:null;if(heading)heading.remove();newPage();if(heading)content.append(heading);content.append(node)}if(content.scrollHeight>content.clientHeight+1){ // split exceptional long text without truncation
  const text=node.innerText;node.remove();const words=text.split(/\s+/);let chunk='';for(const word of words){const candidate=chunk+' '+word;const probe=document.createElement('div');probe.className='px-block px-note';probe.textContent=candidate;content.append(probe);if(content.scrollHeight>content.clientHeight+1){probe.remove();if(chunk){const done=document.createElement('div');done.className='px-block px-note';done.textContent=chunk;content.append(done)}newPage();chunk=word}else{probe.remove();chunk=candidate}}if(chunk){const done=document.createElement('div');done.className='px-block px-note';done.textContent=chunk;content.append(done)}}};blocks.forEach(insert);
  const pages=[...host.children];pages.forEach((p,i)=>p.querySelector('.px-pagination').textContent=`${i+1} / ${pages.length}`);document.querySelector('#page-count').textContent=`${pages.length} ${pages.length===1?'صفحة':'صفحات'}`;scalePages();
